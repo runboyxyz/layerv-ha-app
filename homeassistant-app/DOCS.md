@@ -13,12 +13,12 @@ token.
 4. Optionally choose a stable connector ID and entity include/exclude policies.
 5. Save, start the App, and open its Web UI.
 
-On first start, the App registers the connector through
-`POST /v1/connectors`, stores its generated resource ID and connector identity
-under `/data`, and removes the temporary bootstrap key after identity state is
-present. Normal restarts do not create another connector.
+On first start, the App uses the bundled LayerV Connector to find or create its
+tunnel resource and write the LayerV-issued route identifiers under `/data`.
+The connector then registers its identity and stores durable agent state there.
+Normal restarts reuse both the route and agent state instead of creating another
+connector.
 
 Do not delete App data or change the connector ID after registration. App
 backups contain LayerV credentials and connector private state and must be
 protected accordingly.
-
