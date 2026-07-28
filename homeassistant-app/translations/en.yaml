@@ -1,0 +1,21 @@
+configuration:
+  layerv_api_token:
+    name: LayerV API key
+    description: Required to register the connector and create or revoke qURLs. Stored in protected App storage.
+  connector_id:
+    name: Connector ID
+    description: Optional stable connector name. Leave empty to generate one, and do not change it after registration.
+  include_domains:
+    name: Included domains
+    description: Optional comma-separated Home Assistant domains to show in the entity picker.
+  include_areas:
+    name: Included areas
+    description: Optional comma-separated Home Assistant area IDs to show in the entity picker.
+  exclude_domains:
+    name: Excluded domains
+    description: Comma-separated domains hidden from the picker. Exclusions override inclusions.
+  exclude_entities:
+    name: Excluded entities
+    description: Optional comma-separated entity IDs hidden from the picker. Exclusions override inclusions.
+network:
+  8080/tcp: Public gateway route used internally by the LayerV Connector. Leave disabled.
