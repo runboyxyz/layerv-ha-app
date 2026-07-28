@@ -14,6 +14,17 @@ required.
 
 Learn more at [LayerV.ai](https://layerv.ai).
 
+## Security
+
+Guest links are independently expiring and revocable. The gateway stores guest
+bearer tokens only as hashes, enforces every permitted entity and action on the
+server, accepts administration through Home Assistant Ingress, and runs under
+a custom AppArmor profile. Published images include provenance, an SBOM, and a
+keyless Cosign signature.
+
+See `DOCS.md` for credential handling and `SECURITY.md` for private
+vulnerability reporting.
+
 ## License
 
 The gateway source code is available under the MIT License. LayerV names,
