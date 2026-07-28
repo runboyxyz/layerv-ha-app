@@ -14,5 +14,8 @@ configuration:
   exclude_entities:
     name: Excluded entities
     description: Optional comma-separated entity IDs hidden from the picker. Exclusions override inclusions.
+  qurl_max_lifetime_days:
+    name: Maximum qURL lifetime
+    description: Plan limit in days. Use 3 for LayerV Free or up to 30 when allowed by your plan.
 network:
   8080/tcp: Public gateway route used internally by the LayerV Connector. Leave disabled.
