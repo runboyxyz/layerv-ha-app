@@ -1,11 +1,19 @@
 # Changelog
 
+## 0.1.12
+
+- Copy generated links from inside the active user dialog instead of an inert page element.
+
 ## 0.1.11
+
 
 - Copy generated links synchronously while browser click permission is active.
 - Make newly generated URLs directly selectable if browser policy blocks copying.
 
+
 ## 0.1.10
+
+
 
 
 - Load guest preview assets and APIs through the Home Assistant Ingress path.
@@ -13,7 +21,13 @@
 - Display newly generated activation and access links as readable rows.
 
 
+
+
 ## 0.1.9
+
+
+
+
 
 
 
@@ -25,7 +39,19 @@
 
 
 
+
+
+
+
 ## 0.1.8
+
+
+
+
+
+
+
+
 
 
 
@@ -44,4 +70,13 @@
 
 
 
+
+
+
+
+
+
+
+
 ## 0.1.7
+
