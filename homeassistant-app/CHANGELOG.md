@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.25
+
+- Remove the unused legacy `/door` interface and pre-deployment plaintext-token
+  migration path.
+- Add a Home Assistant configuration ceiling for qURL lifetimes, defaulting to
+  the LayerV Free-plan limit of three days.
+- Support custom whole-number lifetimes in minutes, hours, or days and hide
+  presets above the configured plan limit.
+
 ## 0.1.24
 
 - Add a preview-only toolbar with a **Back to Gateway** action.
