@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.18
+
+- Replace the initial path-level AppArmor rules with a compatibility profile so
+  Python can import packaged modules and the connector can initialize its
+  private container audit log.
+
 ## 0.1.17
 
 - Allow Python's shared runtime library under `/usr/local/lib` in the AppArmor
