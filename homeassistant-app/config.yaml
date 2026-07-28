@@ -1,5 +1,5 @@
 name: LayerV Home Assistant Gateway
-version: "0.1.19"
+version: "0.1.20"
 slug: layerv_ha_gateway
 description: Share selected Home Assistant controls through revocable, expiring LayerV qURLs
 url: https://layerv.ai
@@ -18,14 +18,12 @@ panel_title: LayerV Gateway
 homeassistant_api: true
 hassio_role: default
 options:
-  layerv_api_token: ""
   connector_id: ""
   include_domains: ""
   include_areas: ""
   exclude_domains: "camera,alarm_control_panel"
   exclude_entities: ""
 schema:
-  layerv_api_token: password
   connector_id: "str?"
   include_domains: "str?"
   include_areas: "str?"
