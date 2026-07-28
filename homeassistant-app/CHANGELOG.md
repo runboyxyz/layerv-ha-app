@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.6
+
+- Let private Home Assistant Ingress supply admin authentication without
+  requiring an admin token in the browser URL.
+- Preserve explicit token authentication for direct `/admin` access.
+
 ## 0.1.5
 
 - Keep admin styles, scripts, and API requests under the Home Assistant
