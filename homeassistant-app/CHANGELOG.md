@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.7
+
+- Save existing pages through an Ingress-compatible authenticated POST
+  endpoint while retaining PUT compatibility.
+- Report non-JSON proxy responses with their HTTP status and content type.
+
 ## 0.1.6
 
 - Let private Home Assistant Ingress supply admin authentication without
