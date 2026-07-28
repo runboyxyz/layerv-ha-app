@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.19
+
+- Add a first-run **Connect to LayerV** screen inside authenticated Home
+  Assistant Ingress.
+- Write onboarding credentials directly to the owner-only secret file without
+  placing them in Home Assistant App options.
+- Retain the Configuration API-key field only as a recovery override.
+- Shorten the Home Assistant sidebar title to **LayerV Gateway**.
+
 ## 0.1.18
 
 - Replace the initial path-level AppArmor rules with a compatibility profile so
