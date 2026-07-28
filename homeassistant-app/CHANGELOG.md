@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.24
+
+- Add a preview-only toolbar with a **Back to Gateway** action.
+- Keep the toolbar out of issued guest access pages and provide an
+  Ingress-root fallback when browser history is unavailable.
+
 ## 0.1.23
 
 - Poll the Ingress upstream during reset and reload only after onboarding is
