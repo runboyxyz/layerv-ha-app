@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.8
+
+- Build browser asset and API URLs from Home Assistant's validated
+  `X-Ingress-Path` instead of the outer App page URL.
+
 ## 0.1.7
 
 - Save existing pages through an Ingress-compatible authenticated POST
