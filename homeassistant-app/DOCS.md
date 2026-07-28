@@ -1,6 +1,6 @@
 # LayerV Home Assistant Gateway
 
-LayerV creates protected, revocable links to narrowly scoped Home Assistant
+[LayerV](https://layerv.ai) creates protected, revocable links to narrowly scoped Home Assistant
 pages. A guest sees only the entities and actions you approve—not your normal
 Home Assistant dashboard, account, or administrative controls.
 
@@ -103,4 +103,10 @@ protected accordingly.
 - If Home Assistant reports an update but the update dialog is stale, reload
   Supervisor instead of deleting the App.
 - Never paste LayerV API keys, activation qURLs, access links, or preview tokens
-  into public support messages.
+into public support messages.
+
+## License and branding
+
+The gateway source code is licensed under the MIT License. LayerV names,
+wordmarks, logos, and other brand assets are not included in that license.
+See `BRAND_ASSETS.md` in the repository.
