@@ -23,6 +23,11 @@ The App passes `/data/connector-state` directly to the connector as its agent
 state directory. Do not replace it with a symlink or share it with another
 connector instance.
 
+The configured LayerV key remains in protected App storage because the gateway
+uses it to manage qURLs. The connector receives the protected key-file path on
+startup; it reuses completed agent state when available and uses the key only
+when bootstrap or recovery is required.
+
 Do not delete App data or change the connector ID after registration. App
 backups contain LayerV credentials and connector private state and must be
 protected accordingly.
