@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.23
+
+- Poll the Ingress upstream during reset and reload only after onboarding is
+  actually ready, eliminating the remaining transient 404 race.
+- After API-key submission, wait for the registered Gateway to become healthy
+  before reloading back into its administration page.
+
 ## 0.1.22
 
 - Open previews in the current Home Assistant App view so mobile Companion App
