@@ -19,6 +19,10 @@ The connector then registers its identity and stores durable agent state there.
 Normal restarts reuse both the route and agent state instead of creating another
 connector.
 
+The App passes `/data/connector-state` directly to the connector as its agent
+state directory. Do not replace it with a symlink or share it with another
+connector instance.
+
 Do not delete App data or change the connector ID after registration. App
 backups contain LayerV credentials and connector private state and must be
 protected accordingly.
