@@ -12,6 +12,10 @@ supplies local API access automatically, while LayerV provides the protected
 external route. No inbound router port or long-lived Home Assistant token is
 required.
 
+First-run setup happens inside authenticated Home Assistant Ingress. The
+LayerV credential is written directly to an owner-only secret file instead of
+Home Assistant App options.
+
 Learn more at [LayerV.ai](https://layerv.ai).
 
 ## Security
