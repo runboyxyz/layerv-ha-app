@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2
+
+- Store connector identity directly in `/data/connector-state` instead of
+  presenting that directory through a symlink rejected by the connector.
+- Pass the persistent state directory to connector registration and runtime.
+- Preserve sanitized connector failure details without exposing API keys.
+
 ## 0.1.1
 
 - Replace the unsupported `/v1/connectors` onboarding request with the LayerV
