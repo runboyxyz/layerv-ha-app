@@ -23,29 +23,30 @@ interrupt anyone else.
 
 1. Add this repository to the Home Assistant App Store.
 2. Install **LayerV Home Assistant Gateway**.
-3. Enter a LayerV API key under **Configuration**. The key needs connector and
-   qURL read/write permissions.
-4. Optionally choose a stable connector ID and entity include/exclude policies.
-5. Save, start the App, and open its Web UI.
+3. Optionally choose a stable connector ID and entity include/exclude policies.
+4. Start the App and open its Web UI.
+5. On **Connect to LayerV**, enter a dedicated API key for this installation.
+   Recommended scopes are **Read qURLs**, **Create, update & delete qURLs**, and
+   **Bootstrap LayerV qURL Connector agents**.
+6. After the connector is registered, the Web UI reloads into the Gateway.
 
 ## Configuration reference
 
 ### `layerv_api_token`
 
-Required on first start. A LayerV API key used to register the connector and
-create or revoke qURLs. Use an installation-specific, revocable key with only
-the required connector and qURL permissions.
+Recovery override only. Normal first-run setup collects the LayerV API key
+inside authenticated Home Assistant Ingress and writes it directly to
+`/data/secrets/layerv-api-key` with owner-only permissions. It never enters
+Home Assistant App options.
 
-Home Assistant masks this field but stores App options in `/data/options.json`;
-the mask is not encryption. On first successful startup, the App writes the key
-to `/data/secrets/layerv-api-key` with owner-only permissions. You may then
-clear **LayerV API key** in the App configuration, save, and restart. The App
-will reuse its protected key file, avoiding a second plaintext copy in
-`options.json`.
+Use this Configuration field only to replace a missing or damaged key file.
+Home Assistant masks the field but stores App options in `/data/options.json`;
+the mask is not encryption. After recovery succeeds, clear the field, save,
+and restart so `options.json` does not retain a duplicate plaintext key.
 
 The protected key file is still part of App storage and backups. Treat backups
-as credentials. To rotate the key, enter the replacement key, save, restart,
-verify qURL creation and revocation, and then clear the option again.
+as credentials. A dedicated rotation control will be added to the Gateway UI;
+until then, the recovery override can replace the key.
 
 ### `connector_id`
 
