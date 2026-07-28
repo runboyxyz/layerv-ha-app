@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4
+
+- Open the admin shell when Home Assistant requests the App Ingress root.
+- Permit same-origin Home Assistant framing only on the private Ingress
+  response while retaining the public gateway's frame prohibition.
+
 ## 0.1.3
 
 - Keep the configured LayerV key file available to the embedded connector
