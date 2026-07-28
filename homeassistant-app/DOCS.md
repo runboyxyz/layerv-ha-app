@@ -32,22 +32,6 @@ interrupt anyone else.
 
 ## Configuration reference
 
-### `layerv_api_token`
-
-Recovery override only. Normal first-run setup collects the LayerV API key
-inside authenticated Home Assistant Ingress and writes it directly to
-`/data/secrets/layerv-api-key` with owner-only permissions. It never enters
-Home Assistant App options.
-
-Use this Configuration field only to replace a missing or damaged key file.
-Home Assistant masks the field but stores App options in `/data/options.json`;
-the mask is not encryption. After recovery succeeds, clear the field, save,
-and restart so `options.json` does not retain a duplicate plaintext key.
-
-The protected key file is still part of App storage and backups. Treat backups
-as credentials. A dedicated rotation control will be added to the Gateway UI;
-until then, the recovery override can replace the key.
-
 ### `connector_id`
 
 Optional stable name for this Home Assistant installation's LayerV connector.
@@ -110,7 +94,20 @@ connector instance.
 The LayerV key remains in protected App storage because the gateway uses it to
 manage qURLs. The connector receives the protected key-file path on startup; it
 reuses completed agent state when available and uses the key only when
-bootstrap or recovery is required.
+bootstrap is required.
+
+## Resetting the LayerV connection
+
+Use **Reset LayerV connection** at the bottom of the Gateway page only when
+this installation must register as a new connector. The reset first revokes
+every local user link, then attempts to delete the corresponding remote qURLs.
+It removes the old LayerV credential, connector identity, route configuration,
+and connector state, while preserving every access-page definition and its
+selected Home Assistant resources.
+
+The App then returns to **Connect to LayerV**. Enter a dedicated API key to
+register the new connector, and create new users for the preserved pages.
+Existing users and links cannot be restored.
 
 Do not delete App data or change the connector ID after registration. App
 backups contain LayerV credentials and connector private state and must be
