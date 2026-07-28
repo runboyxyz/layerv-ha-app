@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.17
+
+- Allow Python's shared runtime library under `/usr/local/lib` in the AppArmor
+  profile so the App can start while remaining confined.
+
 ## 0.1.16
 
 - Stop persisting plaintext guest bearer tokens and scrub legacy page records
