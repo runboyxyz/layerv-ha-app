@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3
+
+- Keep the configured LayerV key file available to the embedded connector
+  during startup so placement-cache files cannot be mistaken for a completed
+  agent identity.
+- Continue storing the key only in protected App storage and pass its file path,
+  not its value, to the connector process.
+
 ## 0.1.2
 
 - Store connector identity directly in `/data/connector-state` instead of
