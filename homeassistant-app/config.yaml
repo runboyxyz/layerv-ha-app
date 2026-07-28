@@ -1,5 +1,5 @@
 name: LayerV Home Assistant Gateway
-version: "0.1.12"
+version: "0.1.13"
 slug: layerv_ha_gateway
 description: Create revocable LayerV qURLs for selected Home Assistant entities
 url: https://github.com/runboyxyz/layerv-ha-app
@@ -33,6 +33,4 @@ ports:
   8080/tcp: null
 ports_description:
   8080/tcp: Public gateway (leave disabled; LayerV Connector uses it internally)
-
-
 
