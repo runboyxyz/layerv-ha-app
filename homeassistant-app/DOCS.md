@@ -61,7 +61,18 @@ default.
 Optional comma-separated entity IDs to hide, for example
 `lock.front_door,camera.driveway`. Exclusions take priority over inclusions.
 
-After changing an entity policy, save the configuration and restart the App.
+### `qurl_max_lifetime_days`
+
+Maximum lifetime the Gateway will offer or accept for a newly created qURL.
+Set this to the limit of your LayerV plan: `3` for the Free plan or up to `30`
+for plans that permit longer lifetimes. The default is `3`.
+
+The lifetime begins when the qURL is created. Presets and custom whole-number
+durations are supported in minutes, hours, or days. This setting is a local
+safety ceiling; LayerV remains authoritative and may reject a duration that
+exceeds the account's actual plan.
+
+After changing App configuration, save it and restart the App.
 
 ## Security and persistence
 
@@ -70,8 +81,7 @@ After changing an entity policy, save the configuration and restart the App.
   the gateway itself listens only inside the App container.
 - The gateway remains authoritative for every allowed entity, service, and
   parameter; browser requests cannot expand a page's permissions.
-- Guest access tokens are shown once, persisted only as SHA-256 hashes, and
-  automatically removed from legacy page records during startup.
+- Guest access tokens are shown once and persisted only as SHA-256 hashes.
 - Page definitions, token hashes, qURL revocation identifiers, connector
   identity, and required secrets persist under `/data`.
 - A custom AppArmor profile restricts filesystem and network access beyond the
