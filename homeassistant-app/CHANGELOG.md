@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.20
+
+- Add a confirmed LayerV connection reset that revokes every user locally
+  before attempting remote qURL cleanup.
+- Preserve access-page definitions while removing the old connector
+  credential, identity, configuration, and state.
+- Return directly to authenticated onboarding so a new connector can be
+  registered and new user links issued.
+- Remove the API-key recovery field from Home Assistant App configuration.
+
 ## 0.1.19
 
 - Add a first-run **Connect to LayerV** screen inside authenticated Home
