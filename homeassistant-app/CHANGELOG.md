@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.15
+
+- Link the App, gateway dashboard, guest footer, and documentation to
+  LayerV.ai.
+- Use a layered monochrome sidebar icon that echoes the LayerV mark.
+- License the gateway code under MIT while reserving LayerV brand assets.
+
 ## 0.1.14
 
 - Add LayerV App Store logo and icon assets.
