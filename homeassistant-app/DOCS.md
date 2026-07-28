@@ -1,8 +1,23 @@
 # LayerV Home Assistant Gateway
 
-This App runs the gateway and LayerV qURL Connector together. Home Assistant
-provides API access automatically; do not create a long-lived Home Assistant
-token.
+LayerV creates protected, revocable links to narrowly scoped Home Assistant
+pages. A guest sees only the entities and actions you approve—not your normal
+Home Assistant dashboard, account, or administrative controls.
+
+The App runs the gateway and LayerV qURL Connector together. Home Assistant
+provides local API access automatically, so you do not need to create a
+long-lived Home Assistant token or expose an inbound router port.
+
+## How it works
+
+1. Create a reusable access page, such as **Cat Sitter**.
+2. Add Home Assistant entities and approve the permitted actions.
+3. Add a named user and choose an expiration time.
+4. Send that user the activation qURL and one-time-displayed access link.
+5. Revoke that user—or every user on the page—whenever needed.
+
+Each user receives an independent LayerV qURL. Revoking one user does not
+interrupt anyone else.
 
 ## Installation
 
@@ -12,6 +27,55 @@ token.
    qURL read/write permissions.
 4. Optionally choose a stable connector ID and entity include/exclude policies.
 5. Save, start the App, and open its Web UI.
+
+## Configuration reference
+
+### `layerv_api_token`
+
+Required on first start. A LayerV API key used to register the connector and
+create or revoke qURLs. Treat it as a secret. The App stores it in protected
+App storage.
+
+### `connector_id`
+
+Optional stable name for this Home Assistant installation's LayerV connector.
+Leave it empty to generate one automatically. After the first successful
+registration, do not change it unless you intentionally reset the App and its
+connector state.
+
+### `include_domains`
+
+Optional comma-separated allowlist of Home Assistant domains, for example
+`light,cover,lock`. When set, only matching domains (or entities included by
+another include rule) appear in the entity picker.
+
+### `include_areas`
+
+Optional comma-separated Home Assistant area IDs. Entities assigned to those
+areas appear in the picker.
+
+### `exclude_domains`
+
+Comma-separated domains that must never appear in the picker. Exclusions take
+priority over inclusions. Cameras and alarm control panels are excluded by
+default.
+
+### `exclude_entities`
+
+Optional comma-separated entity IDs to hide, for example
+`lock.front_door,camera.driveway`. Exclusions take priority over inclusions.
+
+After changing an entity policy, save the configuration and restart the App.
+
+## Security and persistence
+
+- Guest access is separate from App administration.
+- The gateway remains authoritative for every allowed entity, service, and
+  parameter; browser requests cannot expand a page's permissions.
+- Page definitions, grants, connector identity, and secrets persist under
+  `/data`.
+- App backups contain LayerV credentials and connector private state. Protect
+  them as secrets.
 
 On first start, the App uses the bundled LayerV Connector to find or create its
 tunnel resource and write the LayerV-issued route identifiers under `/data`.
@@ -31,3 +95,12 @@ when bootstrap or recovery is required.
 Do not delete App data or change the connector ID after registration. App
 backups contain LayerV credentials and connector private state and must be
 protected accordingly.
+
+## Troubleshooting
+
+- If the Web UI does not open, verify the App is running and review its log.
+- If no entities appear, review the include/exclude options and restart.
+- If Home Assistant reports an update but the update dialog is stale, reload
+  Supervisor instead of deleting the App.
+- Never paste LayerV API keys, activation qURLs, access links, or preview tokens
+  into public support messages.
