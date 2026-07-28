@@ -1,7 +1,7 @@
 configuration:
   layerv_api_token:
-    name: LayerV API key
-    description: Required initially and for qURL management. After a successful start, clear this duplicate option; the App reuses its owner-only protected key file.
+    name: Recovery LayerV API key
+    description: Leave empty during normal setup. Use only to recover or replace a missing key file, then clear it after a successful restart.
   connector_id:
     name: Connector ID
     description: Optional stable connector name. Leave empty to generate one, and do not change it after registration.
