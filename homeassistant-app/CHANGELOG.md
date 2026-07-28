@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5
+
+- Keep admin styles, scripts, and API requests under the Home Assistant
+  Ingress URL prefix.
+
 ## 0.1.4
 
 - Open the admin shell when Home Assistant requests the App Ingress root.
