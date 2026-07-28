@@ -33,8 +33,19 @@ interrupt anyone else.
 ### `layerv_api_token`
 
 Required on first start. A LayerV API key used to register the connector and
-create or revoke qURLs. Treat it as a secret. The App stores it in protected
-App storage.
+create or revoke qURLs. Use an installation-specific, revocable key with only
+the required connector and qURL permissions.
+
+Home Assistant masks this field but stores App options in `/data/options.json`;
+the mask is not encryption. On first successful startup, the App writes the key
+to `/data/secrets/layerv-api-key` with owner-only permissions. You may then
+clear **LayerV API key** in the App configuration, save, and restart. The App
+will reuse its protected key file, avoiding a second plaintext copy in
+`options.json`.
+
+The protected key file is still part of App storage and backups. Treat backups
+as credentials. To rotate the key, enter the replacement key, save, restart,
+verify qURL creation and revocation, and then clear the option again.
 
 ### `connector_id`
 
@@ -70,10 +81,18 @@ After changing an entity policy, save the configuration and restart the App.
 ## Security and persistence
 
 - Guest access is separate from App administration.
+- Home Assistant Ingress is accepted only from the Supervisor Ingress proxy;
+  the gateway itself listens only inside the App container.
 - The gateway remains authoritative for every allowed entity, service, and
   parameter; browser requests cannot expand a page's permissions.
-- Page definitions, grants, connector identity, and secrets persist under
-  `/data`.
+- Guest access tokens are shown once, persisted only as SHA-256 hashes, and
+  automatically removed from legacy page records during startup.
+- Page definitions, token hashes, qURL revocation identifiers, connector
+  identity, and required secrets persist under `/data`.
+- A custom AppArmor profile restricts filesystem and network access beyond the
+  container boundary.
+- Published images include an SBOM, build provenance, and a keyless Cosign
+  signature tied to the release workflow.
 - App backups contain LayerV credentials and connector private state. Protect
   them as secrets.
 
@@ -87,10 +106,10 @@ The App passes `/data/connector-state` directly to the connector as its agent
 state directory. Do not replace it with a symlink or share it with another
 connector instance.
 
-The configured LayerV key remains in protected App storage because the gateway
-uses it to manage qURLs. The connector receives the protected key-file path on
-startup; it reuses completed agent state when available and uses the key only
-when bootstrap or recovery is required.
+The LayerV key remains in protected App storage because the gateway uses it to
+manage qURLs. The connector receives the protected key-file path on startup; it
+reuses completed agent state when available and uses the key only when
+bootstrap or recovery is required.
 
 Do not delete App data or change the connector ID after registration. App
 backups contain LayerV credentials and connector private state and must be
@@ -103,7 +122,9 @@ protected accordingly.
 - If Home Assistant reports an update but the update dialog is stale, reload
   Supervisor instead of deleting the App.
 - Never paste LayerV API keys, activation qURLs, access links, or preview tokens
-into public support messages.
+  into public support messages.
+- Report suspected vulnerabilities privately using the process in
+  `SECURITY.md`; never put live credentials in a public issue.
 
 ## License and branding
 
