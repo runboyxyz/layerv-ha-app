@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.16
+
+- Stop persisting plaintext guest bearer tokens and scrub legacy page records
+  automatically at startup.
+- Accept administrative Ingress traffic only from Home Assistant's trusted
+  proxy and keep the gateway listener on the container loopback interface.
+- Withhold upstream API response bodies and connector registration output that
+  could contain authentication material.
+- Add a custom AppArmor profile, a private vulnerability-reporting policy, and
+  keyless Cosign signing for published container images.
+- Document how to remove the duplicate LayerV API key from App options after
+  its protected key file has been initialized.
+
 ## 0.1.15
 
 - Link the App, gateway dashboard, guest footer, and documentation to
