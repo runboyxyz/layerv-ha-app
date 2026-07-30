@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.29
+
+- Treat LayerV `404 Not Found` and `410 Gone` deletion responses as successful,
+  idempotent qURL revocation while preserving genuine remote failures.
+- Add a read-only Gateway health panel showing the running version, Gateway
+  state, LayerV API configuration, page count, and active guest-link count.
+- Remove guest labels from qURL creation and revocation audit events while
+  retaining non-secret page, grant, and qURL identifiers.
+
 ## 0.1.28
 
 - Show a clear expired-or-revoked message when an open guest page loses

@@ -19,6 +19,10 @@ long-lived Home Assistant token or expose an inbound router port.
 Each guest receives an independent LayerV qURL. Revoking one guest does not
 interrupt anyone else.
 
+The Gateway page includes a read-only health panel showing the installed
+version, Gateway status, whether LayerV API access is configured, and current
+page and guest-link counts. It never displays credentials or access URLs.
+
 ## Installation
 
 1. Add this repository to the Home Assistant App Store.
