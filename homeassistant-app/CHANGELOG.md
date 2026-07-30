@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.38
+
+- Permit the atomic `.reset-connection.request.tmp` file under the enforced
+  AppArmor profile so confirmed LayerV connection resets can be scheduled.
+- Show reset progress and API failures inside the open confirmation dialog
+  instead of only in the obscured page-level status area.
+- Add regression coverage for both the temporary and final reset request paths.
+
 ## 0.1.37
 
 - Permit SQLite's `guest-activity.sqlite3-journal` rollback sidecar under the

@@ -33,6 +33,7 @@ profile layerv_ha_gateway flags=(attach_disconnected,mediate_deleted) {
   /data/installation-id rwk,
   /data/.installation-id.tmp rwk,
   /data/reset-connection.request rwk,
+  /data/.reset-connection.request.tmp rwk,
   /data/guest-activity.sqlite3{,-journal,-shm,-wal} rwk,
   /data/pages/{,**} rwk,
   /data/secrets/{,**} rwk,

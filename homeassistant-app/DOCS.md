@@ -142,7 +142,9 @@ editing, preview, one temporary guest action, revocation, activity history, and
 one App restart. Another LayerV connection reset is not required.
 
 The activity database allowlist includes SQLite's rollback-journal, WAL, and
-shared-memory sidecars. These files are transient database implementation
+shared-memory sidecars. The allowlist also covers the temporary and final files
+used to schedule a connection reset atomically. These files are transient
+implementation
 details under `/data`; they contain activity/security history and must remain
 covered by the same backup and credential-handling precautions.
 
