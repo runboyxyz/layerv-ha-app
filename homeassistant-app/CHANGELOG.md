@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.30
+
+- Add per-guest activity history for successful and failed Home Assistant
+  actions, including time, entity, approved action, and safe action parameters.
+- Keep the Gateway authoritative for activity attribution and exclude preview
+  actions, credentials, access links, headers, and unrestricted request data.
+- Show activity from each active guest and retain revoked-guest history for 30
+  days, with an immediate **Delete history** option.
+- Store activity in an owner-only SQLite database under persistent App data and
+  automatically purge expired revoked-guest records.
+
 ## 0.1.29
 
 - Treat LayerV `404 Not Found` and `410 Gone` deletion responses as successful,

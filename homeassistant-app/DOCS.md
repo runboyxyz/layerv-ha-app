@@ -19,6 +19,25 @@ long-lived Home Assistant token or expose an inbound router port.
 Each guest receives an independent LayerV qURL. Revoking one guest does not
 interrupt anyone else.
 
+## Guest activity
+
+Open a page's **Guests** section and select **View activity** beside a guest to
+review actions made with that individual access grant. The history shows the
+time, entity, approved action, safe action parameters, and whether Home
+Assistant accepted the action.
+
+Preview activity is deliberately excluded because it belongs to the Home
+Assistant administrator, not the guest. The Gateway does not store guest
+tokens, activation qURLs, access links, request headers, or arbitrary request
+data in activity history.
+
+After a guest is revoked, their history moves to **Recently revoked guests**.
+It remains available for 30 days for troubleshooting and accountability, then
+is automatically deleted. Use **Delete history** to remove a revoked guest's
+record immediately. Active guest history cannot be deleted without first
+revoking that guest. Deleting the entire access page deletes all of its guest
+history immediately.
+
 The Gateway page includes a read-only health panel showing the installed
 version, Gateway status, whether LayerV API access is configured, and current
 page and guest-link counts. It never displays credentials or access URLs.
@@ -88,6 +107,10 @@ After changing App configuration, save it and restart the App.
 - Guest access tokens are shown once and persisted only as SHA-256 hashes.
 - Page definitions, token hashes, qURL revocation identifiers, connector
   identity, and required secrets persist under `/data`.
+- Guest activity is stored in an owner-only SQLite database under `/data`.
+  Protect Home Assistant backups accordingly. Revoked-guest records are
+  automatically purged after 30 days, and each guest is limited to the 1,000
+  most recent actions.
 - A custom AppArmor profile restricts filesystem and network access beyond the
   container boundary.
 - Published images include an SBOM, build provenance, and a keyless Cosign
