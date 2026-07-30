@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.41
+
+- Close slow or incomplete client requests after a 15-second connection
+  deadline.
+- Reject more than 64 request headers or more than 32 KiB of aggregate header
+  data with HTTP 431.
+- Cap active request threads and the queued connection backlog at 64 each.
+- Quietly rate-limit repeated unauthorized page reads without adding noisy
+  security-history rows; normal authenticated mobile polling remains unlimited.
+- Add real-socket adversarial coverage for slow clients, header abuse,
+  connection saturation, invalid-read floods, and concurrent valid polling.
+
 ## 0.1.40
 
 - Keep primary values and units visible for read-only sensors on narrow mobile
