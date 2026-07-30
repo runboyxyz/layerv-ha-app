@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.47
+
+- Keep the guest activity database group-readable and group-writable for the
+  isolated admin and guest processes.
+- Prevent guest-page access from locking the admin process out of activity
+  summaries and page management.
+
 ## 0.1.46
 
 - Assign cooperating processes their required shared storage group as the
