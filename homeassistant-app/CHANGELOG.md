@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.45
+
+- Publish the complete process-isolation AppArmor profile with the public
+  Home Assistant App Store metadata.
+- Permit creation and use of the isolated policy, activity, admin-runtime,
+  and LayerV broker stores during upgrade.
+- Permit the root supervisor to assign the fixed child-process identities
+  before dropping their privileges.
+
 ## 0.1.44
 
 - Permit the root App supervisor to create the explicitly allowlisted
