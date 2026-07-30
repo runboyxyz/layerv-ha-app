@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.43
+
+- Add `/app` to the packaged Python module path so the isolation supervisor
+  can import the Gateway modules regardless of the working directory selected
+  by Home Assistant Supervisor.
+- Restore App startup after the 0.1.42 process-isolation update.
+
 ## 0.1.42
 
 - Split the public guest gateway from the Home Assistant Ingress admin
