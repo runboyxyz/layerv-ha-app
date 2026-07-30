@@ -31,12 +31,25 @@ Assistant administrator, not the guest. The Gateway does not store guest
 tokens, activation qURLs, access links, request headers, or arbitrary request
 data in activity history.
 
-After a guest is revoked, their history moves to **Recently revoked guests**.
+After a guest is revoked, their history moves to **Recently ended guests**.
 It remains available for 30 days for troubleshooting and accountability, then
 is automatically deleted. Use **Delete guest record** to remove the revoked
 guest entry and all of its history immediately. Active guest records cannot be
 deleted without first revoking that guest. Deleting the entire access page
 deletes all of its guest history immediately.
+
+Expired guests are removed automatically from the active guest list the next
+time the Gateway page is refreshed or their expired link is used. Their local
+access remains denied at the exact expiration time regardless of when cleanup
+runs. The Gateway also attempts to remove the expired LayerV qURL and retains
+the guest record under **Recently ended guests** for the same 30-day review
+period.
+
+The **Security events** section records recent invalid-token attempts,
+expired-link attempts, action rate limiting, unapproved entity or action
+requests, and actions rejected by Home Assistant. Attributable events also
+appear in the individual guest's activity view. Tokens, request bodies,
+headers, and IP addresses are not stored.
 
 The Gateway page includes a read-only health panel showing the installed
 version, Gateway status, whether LayerV API access is configured, and current
@@ -111,6 +124,8 @@ After changing App configuration, save it and restart the App.
   Protect Home Assistant backups accordingly. Revoked-guest records are
   automatically purged after 30 days, and each guest is limited to the 1,000
   most recent actions.
+- Security events are retained for 30 days and capped at the 1,000 most recent
+  events per page. The Web UI displays the latest 100.
 - A custom AppArmor profile restricts filesystem and network access beyond the
   container boundary.
 - Published images include an SBOM, build provenance, and a keyless Cosign

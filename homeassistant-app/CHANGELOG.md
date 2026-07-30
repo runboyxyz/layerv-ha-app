@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.32
+
+- Automatically remove expired grants from active page data on the next
+  Gateway refresh or expired-link attempt and clean up their LayerV qURLs.
+- Retain expired guests and their activity for the normal 30-day review period
+  before automatic deletion.
+- Add per-page and per-guest security history for invalid tokens, expired-link
+  attempts, rate limiting, unapproved actions, and Home Assistant rejections.
+- Exclude tokens, request bodies, headers, IP addresses, and arbitrary fields
+  from security history, with 30-day and 1,000-event storage limits.
+
 ## 0.1.31
 
 - Route revoked-guest deletion through the correct HTTP `DELETE` handler.
