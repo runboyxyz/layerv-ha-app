@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.44
+
+- Permit the root App supervisor to create the explicitly allowlisted
+  top-level isolation stores when upgrading an existing Home Assistant
+  `/data` volume.
+- Include the private LayerV broker store in fresh image initialization.
+- Restore the 0.1.42 policy migration without broadening access to arbitrary
+  `/data` descendants.
+
 ## 0.1.43
 
 - Add `/app` to the packaged Python module path so the isolation supervisor
