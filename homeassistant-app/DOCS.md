@@ -12,11 +12,11 @@ long-lived Home Assistant token or expose an inbound router port.
 
 1. Create a reusable access page, such as **Cat Sitter**.
 2. Add Home Assistant entities and approve the permitted actions.
-3. Add a named user and choose an expiration time.
-4. Send that user the activation qURL and one-time-displayed access link.
-5. Revoke that user—or every user on the page—whenever needed.
+3. Add a named guest and choose an expiration time.
+4. Send that guest the activation qURL and one-time-displayed access link.
+5. Revoke that guest—or every guest on the page—whenever needed.
 
-Each user receives an independent LayerV qURL. Revoking one user does not
+Each guest receives an independent LayerV qURL. Revoking one guest does not
 interrupt anyone else.
 
 ## Installation
@@ -112,14 +112,14 @@ LayerV connection reset.
 
 Use **Reset LayerV connection** at the bottom of the Gateway page only when
 this installation must register as a new connector. The reset first revokes
-every local user link, then attempts to delete the corresponding remote qURLs.
+every local guest link, then attempts to delete the corresponding remote qURLs.
 It removes the old LayerV credential, connector identity, route configuration,
 and connector state, while preserving every access-page definition and its
 selected Home Assistant resources.
 
 The App then returns to **Connect to LayerV**. Enter a dedicated API key to
-register the new connector, and create new users for the preserved pages.
-Existing users and links cannot be restored.
+register the new connector, and create new guests for the preserved pages.
+Existing guests and links cannot be restored.
 
 Do not delete App data or change the connector ID after registration. App
 backups contain LayerV credentials and connector private state and must be

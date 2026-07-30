@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.28
+
+- Show a clear expired-or-revoked message when an open guest page loses
+  access instead of exposing a JSON parsing error.
+- Stop status polling and disable guest controls after access ends.
+- Safely handle both JSON and plain-text error responses from the Gateway or
+  LayerV edge while continuing to retry temporary failures.
+- Rename user-facing “user” terminology to “guest” to reflect that a qURL is
+  an access grant rather than a Home Assistant user account.
+
 ## 0.1.27
 
 - Stop providing the LayerV API key to the Connector after its initial
