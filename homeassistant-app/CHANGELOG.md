@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.46
+
+- Assign cooperating processes their required shared storage group as the
+  primary GID instead of relying on supplementary container groups.
+- Restore deterministic guest reads of existing page definitions and broker
+  reads of authoritative policy.
+- Continue restricting page and activity data to the admin and guest process
+  identities.
+
 ## 0.1.45
 
 - Publish the complete process-isolation AppArmor profile with the public
