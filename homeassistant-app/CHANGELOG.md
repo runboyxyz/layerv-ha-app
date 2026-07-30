@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.37
+
+- Permit SQLite's `guest-activity.sqlite3-journal` rollback sidecar under the
+  enforced AppArmor profile.
+- Restore guest-activity loading, revoked-guest deletion, retention cleanup,
+  and other activity-store transactions that need SQLite's default rollback
+  journal.
+- Add regression coverage for both rollback-journal and WAL sidecar paths.
+
 ## 0.1.36
 
 - Promote the explicit AppArmor filesystem, network, and signal allowlist from

@@ -141,6 +141,11 @@ The restricted profile is enforced. After an App update, verify startup, page
 editing, preview, one temporary guest action, revocation, activity history, and
 one App restart. Another LayerV connection reset is not required.
 
+The activity database allowlist includes SQLite's rollback-journal, WAL, and
+shared-memory sidecars. These files are transient database implementation
+details under `/data`; they contain activity/security history and must remain
+covered by the same backup and credential-handling precautions.
+
 If the App fails only after this enforcement update, review the Home Assistant
 host audit journal for `apparmor="DENIED"` events associated with
 `layerv_ha_gateway`. Share only sanitized operation names and paths; never
