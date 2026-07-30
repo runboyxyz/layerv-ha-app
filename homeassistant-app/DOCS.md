@@ -45,11 +45,12 @@ runs. The Gateway also attempts to remove the expired LayerV qURL and retains
 the guest record under **Recently ended guests** for the same 30-day review
 period.
 
-The **Security events** section records recent invalid-token attempts,
-expired-link attempts, action rate limiting, unapproved entity or action
-requests, and actions rejected by Home Assistant. Attributable events also
-appear in the individual guest's activity view. Tokens, request bodies,
-headers, and IP addresses are not stored.
+The **Security events** section records action attempts made with an
+unrecognized token, expired-link attempts, action rate limiting, unapproved
+entity or action requests, and actions rejected by Home Assistant. Read-only
+page loads and automatic status polls never create invalid-token events.
+Attributable events also appear in the individual guest's activity view.
+Tokens, request bodies, headers, and IP addresses are not stored.
 
 The Gateway page includes a read-only health panel showing the installed
 version, Gateway status, whether LayerV API access is configured, and current
