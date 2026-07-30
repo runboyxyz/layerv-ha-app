@@ -1,10 +1,8 @@
 #include <tunables/global>
 
-# This first least-privilege candidate deliberately runs in complain mode.
-# Home Assistant therefore records access outside this allowlist without
-# blocking it. Review the audit events from a complete acceptance test before
-# removing `complain` and enforcing the profile.
-profile layerv_ha_gateway flags=(attach_disconnected,mediate_deleted,complain) {
+# Enforced least-privilege profile refined through Home Assistant acceptance
+# testing. Access outside this allowlist is denied and recorded by AppArmor.
+profile layerv_ha_gateway flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
   #include <abstractions/nameservice>
 

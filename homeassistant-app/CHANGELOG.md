@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.36
+
+- Promote the explicit AppArmor filesystem, network, and signal allowlist from
+  complain mode to enforcement after Home Assistant startup, update, reset,
+  onboarding, Connector bootstrap, page, guest, action, history, and restart
+  acceptance testing produced no unexplained AppArmor events.
+- Keep the former blanket `file`, `network`, and `capability` grants removed.
+- Update regression coverage and operator documentation for enforced denial
+  behavior and rollback.
+
 ## 0.1.35
 
 - Supply the protected LayerV API-key file to the qURL Connector when its
