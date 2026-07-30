@@ -127,12 +127,37 @@ After changing App configuration, save it and restart the App.
   most recent actions.
 - Security events are retained for 30 days and capped at the 1,000 most recent
   events per page. The Web UI displays the latest 100.
-- A custom AppArmor profile restricts filesystem and network access beyond the
-  container boundary.
+- Version 0.1.34 introduces an explicit AppArmor allowlist in **complain
+  mode**. Home Assistant records access outside the candidate policy without
+  blocking it while the onboarding, Connector, guest, reset, expiration, and
+  failure workflows are exercised. After the audit evidence is reviewed, the
+  `complain` flag will be removed in a later release to enforce the verified
+  least-privilege policy.
 - Published images include an SBOM, build provenance, and a keyless Cosign
   signature tied to the release workflow.
 - App backups contain LayerV credentials and connector private state. Protect
   them as secrets.
+
+### AppArmor acceptance testing
+
+The first restricted profile is intentionally non-blocking. Update the App
+normally; do not uninstall it or delete App data. Existing pages, guest grants,
+activity history, LayerV credentials, and Connector identity remain under
+`/data`.
+
+Exercise normal startup, restart, Home Assistant reboot, page editing, entity
+discovery, preview, guest creation and revocation, supported guest actions,
+expiration, history deletion, LayerV/API failure, and finally **Reset LayerV
+connection** plus fresh onboarding. Reset preserves page definitions but
+revokes every guest link and requires new guest links afterward.
+
+Review the Home Assistant host audit journal for `layerv_ha_gateway` AppArmor
+events. Share only sanitized operation names and paths; never include API keys,
+tokens, qURLs, access links, request bodies, or Connector private state.
+Unexpected access should be removed from the application when practical.
+Necessary access should receive the narrowest path and operation rule. The
+profile must not be promoted from complain mode until the complete test has no
+unexplained events.
 
 On first start, the App uses the bundled LayerV Connector to find or create its
 tunnel resource and write the LayerV-issued route identifiers under `/data`.

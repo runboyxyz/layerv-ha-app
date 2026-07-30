@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.34
+
+- Replace the blanket AppArmor `file`, `network`, and `capability` grants with
+  an explicit first-pass allowlist for the packaged runtime, App data,
+  ordinary TCP/UDP networking, and process supervision.
+- Run the candidate profile in AppArmor complain mode so Home Assistant records
+  missing permissions without blocking existing pages, guests, or Connector
+  state during the acceptance-test phase.
+- Document how to collect sanitized AppArmor audit evidence and promote the
+  profile to enforcement only after complete onboarding, reset, guest-action,
+  expiration, restart, and failure-path testing.
+- Add regression coverage preventing blanket AppArmor permissions from being
+  restored accidentally.
+
 ## 0.1.33
 
 - Stop classifying read-only guest-page loads and automatic status polls as
