@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.48
+
+- Allow the root App runner to stop the fixed Ingress child after it has
+  dropped to its dedicated unprivileged UID.
+- Prevent fresh-install onboarding from failing with `PermissionError` while
+  cleaning up its owned processes.
+
 ## 0.1.47
 
 - Keep the guest activity database group-readable and group-writable for the
