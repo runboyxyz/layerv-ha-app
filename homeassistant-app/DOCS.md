@@ -33,10 +33,10 @@ data in activity history.
 
 After a guest is revoked, their history moves to **Recently revoked guests**.
 It remains available for 30 days for troubleshooting and accountability, then
-is automatically deleted. Use **Delete history** to remove a revoked guest's
-record immediately. Active guest history cannot be deleted without first
-revoking that guest. Deleting the entire access page deletes all of its guest
-history immediately.
+is automatically deleted. Use **Delete guest record** to remove the revoked
+guest entry and all of its history immediately. Active guest records cannot be
+deleted without first revoking that guest. Deleting the entire access page
+deletes all of its guest history immediately.
 
 The Gateway page includes a read-only health panel showing the installed
 version, Gateway status, whether LayerV API access is configured, and current

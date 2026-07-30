@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.31
+
+- Route revoked-guest deletion through the correct HTTP `DELETE` handler.
+- Rename the action to **Delete guest record** and remove both the retained
+  revoked-guest entry and all of its activity history.
+
 ## 0.1.30
 
 - Add per-guest activity history for successful and failed Home Assistant
