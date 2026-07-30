@@ -127,7 +127,7 @@ After changing App configuration, save it and restart the App.
   most recent actions.
 - Security events are retained for 30 days and capped at the 1,000 most recent
   events per page. The Web UI displays the latest 100.
-- Version 0.1.36 enforces an explicit AppArmor allowlist for the packaged
+- Version 0.1.38 enforces an explicit AppArmor allowlist for the packaged
   runtime, Gateway data, ordinary TCP/UDP networking, and process supervision.
   Access outside this policy is denied and recorded by Home Assistant.
 - Published images include an SBOM, build provenance, and a keyless Cosign
@@ -197,11 +197,28 @@ protected accordingly.
 - If the Web UI does not open, verify the App is running and review its log.
 - If no entities appear, review the include/exclude options and restart.
 - If Home Assistant reports an update but the update dialog is stale, reload
-  Supervisor instead of deleting the App.
+  the individual App page after **Check for updates**. A Supervisor reload may
+  be unavailable on an older Supervisor; do not delete the App or repository
+  merely to refresh update metadata.
+- If reset does not proceed after typing `RESET`, use the error shown inside
+  the confirmation dialog. An AppArmor denial for
+  `.reset-connection.request.tmp` indicates an outdated profile.
+- If guest activity cannot load or a revoked guest record cannot be deleted,
+  check for an AppArmor denial involving
+  `guest-activity.sqlite3-journal`, `-wal`, or `-shm`.
+- A `401` on an administrator preview normally means the preview was opened
+  outside its active Home Assistant Ingress session. Open Preview from the
+  Gateway UI in the same Home Assistant session.
+- “This access link has expired or been revoked” is the expected guest-facing
+  result after expiration, revocation, reset, or token alteration.
 - Never paste LayerV API keys, activation qURLs, access links, or preview tokens
   into public support messages.
 - Report suspected vulnerabilities privately using the process in
   `SECURITY.md`; never put live credentials in a public issue.
+
+For diagnosis, record only the App version, operation, timestamp, HTTP status,
+and sanitized AppArmor operation/path. Page files, the activity database,
+backups, Connector state, and App logs may contain sensitive operational data.
 
 ## License and branding
 

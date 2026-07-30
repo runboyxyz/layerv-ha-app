@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.39
+
+- Add real threaded-HTTP adversarial tests for cross-page token isolation,
+  forged targets, malformed bodies, replay, concurrency, and revocation races.
+- Linearize guest actions with individual revocation, revoke-all, page
+  deletion, and LayerV connection reset so no new action can succeed after
+  local revocation returns.
+- Reject non-object JSON bodies and apply Gateway security headers to
+  unsupported-method and parser errors.
+- Stop returning Home Assistant service response bodies to guest browsers.
+- Increase the bounded HTTP accept queue and use daemon request threads for
+  predictable shutdown under concurrent traffic.
+
 ## 0.1.38
 
 - Permit the atomic `.reset-connection.request.tmp` file under the enforced
