@@ -1,5 +1,5 @@
 name: LayerV Home Assistant Gateway
-version: "0.1.34"
+version: "0.1.35"
 slug: layerv_ha_gateway
 description: Share selected Home Assistant controls through revocable, expiring LayerV qURLs
 url: https://layerv.ai

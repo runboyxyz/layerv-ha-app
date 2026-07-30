@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.35
+
+- Supply the protected LayerV API-key file to the qURL Connector when its
+  durable agent state is absent or incomplete, as required for the first
+  bootstrap after onboarding or **Reset LayerV connection**.
+- Stop supplying the bootstrap key-file path on later App starts once the
+  Connector's agent identity, keys, tunnel identities, and configuration are
+  complete.
+- Add regression coverage for fresh, partial, and complete Connector state.
+
 ## 0.1.34
 
 - Replace the blanket AppArmor `file`, `network`, and `capability` grants with
