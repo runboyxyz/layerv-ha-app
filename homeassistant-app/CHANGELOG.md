@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.40
+
+- Keep primary values and units visible for read-only sensors on narrow mobile
+  screens.
+- Give read-only entity state a full-width stacked mobile row so long values
+  wrap instead of being hidden or truncated.
+- Add regression coverage for the read-only mobile-state treatment.
+
 ## 0.1.39
 
 - Add real threaded-HTTP adversarial tests for cross-page token isolation,
