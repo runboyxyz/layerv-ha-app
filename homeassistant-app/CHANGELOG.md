@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.27
+
+- Stop providing the LayerV API key to the Connector after its initial
+  registration; normal starts now use only persistent Connector identity.
+- Give the Gateway, Connector, Ingress proxy, and onboarding server explicit
+  minimal environments so unrelated Home Assistant and App secrets are not
+  inherited by sibling processes.
+- Reject page definitions containing entities or actions that do not exactly
+  match the Gateway's server-side Home Assistant discovery allowlist.
+- Add regression coverage for Supervisor-token and LayerV-key separation.
+- Add adversarial tests for cross-page resources, unapproved actions, forged
+  Home Assistant targets, extra service parameters, and token separation.
+
+## 0.1.26
+
+- Remove unused JavaScript bindings, HTML hooks, and admin and guest CSS rules.
+- Add regression checks for orphaned DOM references, JavaScript functions, and
+  CSS classes.
+- Add pinned CI checks for static analysis, secrets, dependencies,
+  configuration, and the built Home Assistant App image.
+- Add weekly Dependabot checks for GitHub Actions and Docker base images.
+
 ## 0.1.25
 
 - Remove the unused legacy `/door` interface and pre-deployment plaintext-token

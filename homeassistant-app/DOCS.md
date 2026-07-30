@@ -102,9 +102,11 @@ state directory. Do not replace it with a symlink or share it with another
 connector instance.
 
 The LayerV key remains in protected App storage because the gateway uses it to
-manage qURLs. The connector receives the protected key-file path on startup; it
-reuses completed agent state when available and uses the key only when
-bootstrap is required.
+manage qURLs. The connector receives the protected key-file path only during
+initial registration. Normal connector starts receive no LayerV API credential
+and authenticate with the persistent identity under `/data/connector-state`.
+Missing or stale connector state fails closed and requires an intentional
+LayerV connection reset.
 
 ## Resetting the LayerV connection
 
