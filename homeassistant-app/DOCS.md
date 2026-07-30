@@ -116,12 +116,20 @@ After changing App configuration, save it and restart the App.
 - Guest access is separate from App administration.
 - Home Assistant Ingress is accepted only from the Supervisor Ingress proxy;
   the gateway itself listens only inside the App container.
-- The gateway remains authoritative for every allowed entity, service, and
-  parameter; browser requests cannot expand a page's permissions.
+- The public guest and Ingress admin gateways run as different Linux users.
+  The public process has no admin token, Supervisor token, LayerV API key,
+  LayerV lifecycle credential, discovery credential, or policy-write
+  credential.
+- Home Assistant actions and LayerV lifecycle operations pass through narrow
+  brokers that independently resolve saved policy. Browser requests cannot
+  supply an arbitrary HA service/entity tuple or raw LayerV resource/qURL ID.
+- Brokers read a sanitized authoritative policy store. Guest grants, token
+  hashes, qURL links, and activity history are not published into it.
 - Guest access tokens are shown once and persisted only as SHA-256 hashes.
 - Page definitions, token hashes, qURL revocation identifiers, connector
   identity, and required secrets persist under `/data`.
-- Guest activity is stored in an owner-only SQLite database under `/data`.
+- Guest activity is stored in a group-restricted SQLite database under
+  `/data/guest-runtime`, shared only by the guest and admin process users.
   Protect Home Assistant backups accordingly. Revoked-guest records are
   automatically purged after 30 days, and each guest is limited to the 1,000
   most recent actions.
@@ -130,6 +138,14 @@ After changing App configuration, save it and restart the App.
 - Version 0.1.38 enforces an explicit AppArmor allowlist for the packaged
   runtime, Gateway data, ordinary TCP/UDP networking, and process supervision.
   Access outside this policy is denied and recorded by Home Assistant.
+- Version 0.1.42 adds separate process UIDs and Unix file permissions inside
+  that AppArmor boundary. All processes still share the App container's
+  loopback network and one AppArmor profile; this is defense in depth, not the
+  same boundary as separate containers or coordinated Apps.
+  The root supervisor retains only the identity and file-ownership
+  capabilities needed to prepare persistent directories and drop child UIDs.
+  Child processes lose those effective capabilities when their UID is
+  changed.
 - Published images include an SBOM, build provenance, and a keyless Cosign
   signature tied to the release workflow.
 - App backups contain LayerV credentials and connector private state. Protect

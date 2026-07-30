@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.42
+
+- Split the public guest gateway from the Home Assistant Ingress admin
+  gateway.
+- Move the Supervisor token and LayerV API key into narrow HA and LayerV
+  policy brokers.
+- Add a broker-owned authoritative policy store containing no guest grants,
+  token hashes, qURL links, or activity history.
+- Run admin, guest, broker, policy, Connector, and Ingress processes under
+  separate Linux users with restrictive file ownership.
+- Give the public guest process only the HA action-broker credential; it
+  receives no admin, HA, LayerV, discovery, or policy-publication credential.
+- Migrate existing pages, active qURL revocation mappings, and guest activity
+  into their isolated stores without deleting configured pages.
+
 ## 0.1.41
 
 - Close slow or incomplete client requests after a 15-second connection
