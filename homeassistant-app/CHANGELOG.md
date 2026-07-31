@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.50
+
+- Remove the ineffective optional public port mapping; the qURL Connector
+  reaches the guest Gateway through container loopback and Home Assistant
+  Ingress remains the administrator entry point.
+- Persist Connector audit logs in a Connector-owned directory under App data
+  instead of silently falling back to no logging when `/var/log` is not
+  writable.
+- Add real-socket regression coverage proving that internal brokers reject
+  missing or incorrect credentials before invoking privileged backends.
+
 ## 0.1.49
 
 - Run first-time LayerV credential onboarding under a dedicated unprivileged

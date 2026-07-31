@@ -1,5 +1,5 @@
 name: LayerV Home Assistant Gateway
-version: "0.1.49"
+version: "0.1.50"
 slug: layerv_ha_gateway
 description: Share selected Home Assistant controls through revocable, expiring LayerV qURLs
 url: https://layerv.ai
@@ -31,7 +31,3 @@ schema:
   exclude_domains: "str?"
   exclude_entities: "str?"
   qurl_max_lifetime_days: "int(1,30)"
-ports:
-  8080/tcp: null
-ports_description:
-  8080/tcp: Public gateway (leave disabled; LayerV Connector uses it internally)
