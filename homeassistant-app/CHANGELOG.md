@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.49
+
+- Run first-time LayerV credential onboarding under a dedicated unprivileged
+  identity and pass the credential to the trusted App supervisor through a
+  one-time inherited pipe.
+- Run initial qURL Connector registration under the dedicated Connector
+  identity and reject duplicate onboarding submissions.
+- Handle shutdown signals during onboarding so the App stops cleanly without
+  waiting for container termination.
+- Immediately remove stale entity cards and values when a guest link expires
+  or is revoked.
+- Keep every qURL lifetime control anchored to its own visible label on touch
+  devices and narrow browser layouts.
+
 ## 0.1.48
 
 - Allow the root App runner to stop the fixed Ingress child after it has
