@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.51
+
+- Add an optional page-level proximity safety check that keeps live status
+  visible remotely while requiring guests to be near Home before actions.
+- Explain location use before the browser permission prompt and reuse a recent
+  successful reading for up to five minutes.
+- Validate location freshness and accuracy in the Gateway, and calculate the
+  distance inside the HA policy broker without exposing Home's coordinates to
+  the guest browser or public Gateway process.
+
 ## 0.1.50
 
 - Remove the ineffective optional public port mapping; the qURL Connector

@@ -19,6 +19,21 @@ long-lived Home Assistant token or expose an inbound router port.
 Each guest receives an independent LayerV qURL. Revoking one guest does not
 interrupt anyone else.
 
+### Nearby-only controls
+
+When editing an access page, enable **Require proximity for actions** and set
+an allowed distance from Home to reduce accidental commands while a guest is
+away. Guests can still view live status from anywhere. On their first action,
+the page explains the check before the browser requests location permission.
+A successful reading is reused for up to five minutes.
+
+The Gateway sends the reading to the HA policy broker, which compares it with
+Home Assistant's registered location and authoritative page radius. Home's
+coordinates are not returned to the guest browser or public Gateway process,
+and guest coordinates are not stored in page data, activity history, or audit
+events. Browser location can be spoofed, so this is an accidental-action safety
+feature rather than proof of physical presence.
+
 ## Guest activity
 
 Open a page's **Guests** section and select **View activity** beside a guest to
