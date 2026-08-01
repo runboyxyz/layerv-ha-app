@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.52
+
+- Preserve proximity and other action-denial messages on the guest page
+  instead of incorrectly replacing HTTP 403 responses with the expired or
+  revoked-link screen.
+
 ## 0.1.51
 
 - Add an optional page-level proximity safety check that keeps live status
