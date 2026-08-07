@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.53
+
+- Generate activation and guest-access QR codes entirely in the administrator's
+  browser without sending either bearer link to an external QR service.
+- Open native share, email, and text-message compose screens with both links
+  clearly numbered for the guest.
+- Keep optional email addresses and mobile numbers ephemeral; the Gateway does
+  not save, log, or transmit recipient details.
+
 ## 0.1.52
 
 - Preserve proximity and other action-denial messages on the guest page
