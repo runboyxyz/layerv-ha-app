@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.58
+
+- Send verified guests an invitation email containing the LayerV activation
+  qURL and their one-time access link when the guest record is created.
+- Show invitation delivery status first and place manual QR, copy, and share
+  actions under backup sharing options after successful email delivery.
+- Send guest verification codes through a direct authenticated loopback broker
+  connection that does not depend on HTTP proxy discovery.
+
 ## 0.1.57
 
 - Add locally stored, TLS-only SMTP configuration and a test-email action.
