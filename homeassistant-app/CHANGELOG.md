@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.62
+
+- Hide the replacement-code action while the initial resend cooldown is active.
+- Reveal it after a failed verification or after one minute, with a visible
+  countdown instead of an apparently nonresponsive button.
+
 ## 0.1.61
 
 - Replace the mobile WebView confirmation popup with a reliable two-tap,
