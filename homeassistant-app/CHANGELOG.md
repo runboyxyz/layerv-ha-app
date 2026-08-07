@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.55
+
+- Open email and Messages through real top-level links so iOS can hand their
+  URL schemes out of the Home Assistant Ingress frame.
+- Follow Apple's supported SMS URL format and copy the complete two-link
+  message for the administrator to paste into Messages.
+
 ## 0.1.54
 
 - Serve the locally bundled QR encoder from its nested static directory while
