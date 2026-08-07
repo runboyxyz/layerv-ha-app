@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.61
+
+- Replace the mobile WebView confirmation popup with a reliable two-tap,
+  six-second confirmation before invalidating and replacing a code.
+- Automatically verify a complete six-digit code whether it is typed,
+  AutoFilled, or pasted, removing the redundant visible Verify button.
+
 ## 0.1.60
 
 - Format verification email bodies for clearer mobile one-time-code detection
