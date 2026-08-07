@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.63
+
+- Restore the replacement-code action after its cooldown even when a mobile
+  WebView suspends the page while the guest checks email.
+
 ## 0.1.62
 
 - Hide the replacement-code action while the initial resend cooldown is active.
