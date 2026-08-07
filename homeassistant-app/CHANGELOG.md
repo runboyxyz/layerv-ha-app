@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.54
+
+- Serve the locally bundled QR encoder from its nested static directory while
+  preserving the existing resolved-path boundary against directory traversal.
+
 ## 0.1.53
 
 - Generate activation and guest-access QR codes entirely in the administrator's
