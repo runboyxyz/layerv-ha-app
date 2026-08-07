@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.56
+
+- Prefer the native share sheet on capable iPhone, iPad, Android, and desktop
+  browsers instead of displaying unreliable email and SMS WebView links.
+- Keep email and SMS compose controls as fallbacks when the browser does not
+  provide native sharing; QR and copy controls remain available everywhere.
+
 ## 0.1.55
 
 - Open email and Messages through real top-level links so iOS can hand their
