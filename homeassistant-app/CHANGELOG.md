@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.60
+
+- Format verification email bodies for clearer mobile one-time-code detection
+  and add a permission-aware **Paste code** action.
+- Confirm before sending a replacement code and clearly warn that the existing
+  code will stop working.
+- Scroll to, focus, announce, and briefly highlight newly created guest-link
+  results so success details do not appear unnoticed below the visible dialog.
+
 ## 0.1.59
 
 - Keep an existing unexpired verification challenge when a guest returns to
