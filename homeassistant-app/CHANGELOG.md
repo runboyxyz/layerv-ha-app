@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.57
+
+- Add locally stored, TLS-only SMTP configuration and a test-email action.
+- Add optional per-guest email verification with six-digit, single-use codes,
+  ten-minute expiry, resend throttling, and a five-attempt limit.
+- Require a short-lived HttpOnly, Secure, SameSite session for every guest API
+  after verification and invalidate that session when access is revoked.
+- Keep SMTP credentials in the isolated administrator runtime; the public guest
+  process can request only an email to the address saved with its active grant.
+
 ## 0.1.56
 
 - Prefer the native share sheet on capable iPhone, iPad, Android, and desktop
