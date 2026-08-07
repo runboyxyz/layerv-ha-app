@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.59
+
+- Keep an existing unexpired verification challenge when a guest returns to
+  the access page, so reopening the page does not invalidate the emailed code.
+- Replace a verification code only when the guest explicitly selects
+  **Resend code**, while preserving the resend rate limit.
+
 ## 0.1.58
 
 - Send verified guests an invitation email containing the LayerV activation
