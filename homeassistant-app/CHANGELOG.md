@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.64
+
+- Allow camera entities to be shared as authenticated, read-only still images.
+- Refresh camera stills every 30 seconds without saving them to gateway storage.
+- Enforce saved page policy, image type and size checks, no-store caching, and
+  per-guest camera refresh rate limits.
+
 ## 0.1.63
 
 - Restore the replacement-code action after its cooldown even when a mobile

@@ -113,6 +113,12 @@ default.
 Optional comma-separated entity IDs to hide, for example
 `lock.front_door,camera.driveway`. Exclusions take priority over inclusions.
 
+Camera entities can be assigned as read-only resources. Guest pages fetch a
+current still image on demand and refresh it at most every 30 seconds. Images
+are proxied through the page authorization boundary with `no-store` caching;
+the gateway does not save them to its data directory. Live video and audio are
+not exposed.
+
 ### `qurl_max_lifetime_days`
 
 Maximum lifetime the Gateway will offer or accept for a newly created qURL.
