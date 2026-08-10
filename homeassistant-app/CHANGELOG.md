@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.66
+
+- Accept Home Assistant's legacy `image/jpg` camera response type so its JPEG
+  demo cameras display alongside PNG, standard JPEG, and WebP cameras.
+
 ## 0.1.65
 
 - Add polished, self-contained HTML invitation and verification emails with
