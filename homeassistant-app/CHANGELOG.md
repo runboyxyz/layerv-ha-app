@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.65
+
+- Add polished, self-contained HTML invitation and verification emails with
+  prominent action buttons and one-time-code presentation.
+- Retain plain-text alternatives for compatibility while loading no remote
+  images, fonts, scripts, or tracking resources.
+
 ## 0.1.64
 
 - Allow camera entities to be shared as authenticated, read-only still images.
