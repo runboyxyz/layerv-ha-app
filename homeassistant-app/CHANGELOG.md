@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.67
+
+- Display read-only sensor values in compact, responsive cards instead of
+  reserving full control panels for entities with no available actions.
+- Keep cameras and actionable entities full-width while removing redundant
+  read-only labels from compact sensor cards.
+
 ## 0.1.66
 
 - Accept Home Assistant's legacy `image/jpg` camera response type so its JPEG
