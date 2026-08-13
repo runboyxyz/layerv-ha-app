@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.68
+
+- Bound expired rate-limit buckets so attacker-controlled identifiers do not
+  accumulate indefinitely in a long-running Gateway process.
+- Release per-page action locks after all active and waiting operations finish
+  while preserving action and revocation serialization.
+- Consolidate historical feature notes and remove obsolete branding-generation
+  infrastructure without changing Gateway behavior or App branding.
+
 ## 0.1.67
 
 - Display read-only sensor values in compact, responsive cards instead of
