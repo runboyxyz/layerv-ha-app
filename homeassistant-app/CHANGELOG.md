@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.69
+
+- Prepare mounted connector storage before dropping privileges so fresh HAOS
+  installations can complete LayerV registration.
+- Report bounded registration stage, exit-code, and failure categories without
+  exposing connector output or credentials, and resume completed route writes.
+- Return a controlled retry page while Ingress changes onboarding upstreams.
+
 ## 0.1.68
 
 - Bound expired rate-limit buckets so attacker-controlled identifiers do not
