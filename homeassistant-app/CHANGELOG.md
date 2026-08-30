@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.70
+
+- Separate browser HTTP transport from admin and guest rendering with native
+  ES modules and no new runtime dependencies or build step.
+- Preserve distinct Home Assistant broker credentials while allowing the
+  administrator Preview flow to read state and execute saved actions.
+- Add the independent admin-broker credential to disposable demo setup.
+
 ## 0.1.69
 
 - Prepare mounted connector storage before dropping privileges so fresh HAOS
