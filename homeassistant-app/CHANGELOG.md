@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.71
+
+- Replace browser-native confirmation prompts with an in-page confirmation
+  dialog so revoke and delete operations work reliably inside Home Assistant
+  Ingress.
+
 ## 0.1.70
 
 - Separate browser HTTP transport from admin and guest rendering with native
