@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.76
+
+- Include a sanitized HTTP status and error category when automatic cleanup
+  of an expired LayerV qURL fails, without logging response bodies or secrets.
+
 ## 0.1.75
 
 - Migrate the Connector's separate `local_ip` field to its page-specific
