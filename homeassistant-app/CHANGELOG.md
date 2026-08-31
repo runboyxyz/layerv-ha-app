@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.73
+
+- Preserve protected pages when an expired or insufficient LayerV API key
+  blocks the shared-to-per-page Connector migration.
+- Revoke legacy guest grants locally before remote cleanup, then return to
+  secure onboarding to request a replacement key and retry the migration.
+
 ## 0.1.72
 
 - Give every protected page its own LayerV Connector resource and persistent
