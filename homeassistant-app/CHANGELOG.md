@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.77
+
+- Show active, dormant, and total page Connector counts in Gateway health.
+
 ## 0.1.76
 
 - Include a sanitized HTTP status and error category when automatic cleanup
