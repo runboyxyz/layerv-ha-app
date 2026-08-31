@@ -19,6 +19,26 @@ long-lived Home Assistant token or expose an inbound router port.
 Each guest receives an independent LayerV qURL. Revoking one guest does not
 interrupt anyone else.
 
+### Sharing and optional email verification
+
+The guest-link result can be copied, handed to the phone's native share sheet,
+or displayed as a QR code for an in-person recipient. QR codes are generated
+locally in the browser with the bundled encoder; the links are not uploaded to
+a QR service. Anyone who receives or photographs a QR code receives its bearer
+capability, so revoke it if delivery is uncertain.
+
+For higher assurance, configure email under **Gateway health → Configure
+email**, then enable **Require guest verification** when creating a guest. The
+invitation is sent to the saved address, and the guest must enter a six-digit
+code before any state or action API is released. This proves access to the
+mailbox, not a person's legal identity or a unique physical device.
+
+SMTP requires certificate-validated STARTTLS or implicit TLS. The password is
+stored in owner-only App data, never returned by the API, and is not available
+to the public guest process. See
+[`docs/EMAIL_VERIFICATION.md`](../docs/EMAIL_VERIFICATION.md) for provider,
+challenge, session, retry, and cleanup details.
+
 ### Nearby-only controls
 
 When editing an access page, enable **Require proximity for actions** and set
@@ -133,6 +153,10 @@ exceeds the account's actual plan.
 After changing App configuration, save it and restart the App.
 
 ## Security and persistence
+
+The reviewer-facing package is
+[ARCHITECTURE.md](../ARCHITECTURE.md), [SECURITY.md](../SECURITY.md), and
+[REVIEW_GUIDE.md](../REVIEW_GUIDE.md).
 
 - Guest access is separate from App administration.
 - Home Assistant Ingress is accepted only from the Supervisor Ingress proxy;
@@ -261,4 +285,4 @@ backups, Connector state, and App logs may contain sensitive operational data.
 
 The gateway source code is licensed under the MIT License. LayerV names,
 wordmarks, logos, and other brand assets are not included in that license.
-See `BRAND_ASSETS.md` in the repository.
+See `../BRAND_ASSETS.md` in the repository.

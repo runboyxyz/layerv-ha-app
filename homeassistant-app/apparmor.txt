@@ -47,6 +47,7 @@ profile layerv_ha_gateway flags=(attach_disconnected,mediate_deleted) {
   /data/secrets/{,**} rwk,
   /data/connector-config/{,**} rwk,
   /data/connector-state/{,**} rwk,
+  /data/page-connectors/{,**} rwk,
   /data/logs/{,**} rwk,
 
   # Python, SQLite and the Connector may create bounded temporary files.

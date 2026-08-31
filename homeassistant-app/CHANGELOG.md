@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.72
+
+- Give every protected page its own LayerV Connector resource and persistent
+  audit stream, while retiring the former shared Connector during migration.
+- Run page Connectors under stable, unique Linux identities so they cannot
+  read sibling Connector state or logs after bootstrap.
+- Prepare guest-specific `target_path` tokens behind a disabled release gate
+  for LayerV's upcoming Connector support.
+- Keep guest invitations usable with per-page activation links and preserve
+  capability-bound gateway tokens and revocation behavior.
+
 ## 0.1.71
 
 - Replace browser-native confirmation prompts with an in-page confirmation
