@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.74
+
+- Give every page Connector a unique loopback destination so the Connector
+  itself selects the only capability page reachable through its qURL.
+- Present one guest qURL instead of separate activation and gateway links;
+  keep activity page-attributed until LayerV releases `target_path` support.
+- Warm Connectors when pages are created, suspend them after ten guest-free
+  minutes, and quickly resume persisted Connectors when a new guest is added.
+
 ## 0.1.73
 
 - Preserve protected pages when an expired or insufficient LayerV API key
