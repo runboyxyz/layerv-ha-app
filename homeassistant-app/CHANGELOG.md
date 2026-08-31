@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.75
+
+- Migrate the Connector's separate `local_ip` field to its page-specific
+  loopback listener so upgraded Connectors no longer dial the retired shared
+  `127.0.0.1:8080` endpoint.
+
 ## 0.1.74
 
 - Give every page Connector a unique loopback destination so the Connector
