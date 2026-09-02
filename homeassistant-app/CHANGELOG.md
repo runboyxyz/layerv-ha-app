@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.78
+
+- Retry migration cleanup when LayerV briefly reports that the retired shared
+  Connector resource is still active after an App upgrade.
+
 ## 0.1.77
 
 - Show active, dormant, and total page Connector counts in Gateway health.
