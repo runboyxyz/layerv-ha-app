@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.79
+
+- Add per-guest activity alerts through registered Home Assistant Companion
+  App notification targets and a configured administrator email address.
+- Let administrators choose alerts for first login, successful entity actions,
+  and failed or blocked actions; show alert readiness in Gateway health.
+- Replace the shared guest gateway with separately credentialed, page-bound
+  endpoint processes; the Home Assistant broker now derives page authority
+  from each endpoint's capability and rejects cross-page requests.
+
 ## 0.1.78
 
 - Retry migration cleanup when LayerV briefly reports that the retired shared
