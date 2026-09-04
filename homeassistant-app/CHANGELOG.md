@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.85
+
+- Fix the mobile-recipient layout in **Configure email & alerts**.
+- Add per-recipient mobile notification tests after a destination is saved.
+- Show immediate progress and confirmation on the Save button.
+
 ## 0.1.84
 
 - Add a global mobile alert recipient allowlist under **Configure email &
