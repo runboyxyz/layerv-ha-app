@@ -26,11 +26,11 @@ server, accepts administration through Home Assistant Ingress, and runs under
 a custom AppArmor profile. Published images include provenance, an SBOM, and a
 keyless Cosign signature.
 
-See `DOCS.md` for credential handling and `SECURITY.md` for private
-vulnerability reporting.
+See `DOCS.md` for credential handling and guest email verification and
+`../SECURITY.md` for private vulnerability reporting.
 
 ## License
 
 The gateway source code is available under the MIT License. LayerV names,
 wordmarks, logos, and other brand assets are excluded from that license; see
-`BRAND_ASSETS.md`.
+`../BRAND_ASSETS.md`.

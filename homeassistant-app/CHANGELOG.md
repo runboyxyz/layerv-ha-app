@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.93
+
+- Replace the multi-line Home Assistant App-page artwork with a wide,
+  transparent **Guest Access** lockup that makes full use of Home Assistant's
+  fixed 40 px logo height.
+
 ## 0.1.92
 
 - Keep the expanded brand treatment on the administrator Gateway while
