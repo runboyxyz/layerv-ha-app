@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.83
+
+- Fix page-bound guest endpoints so they bind their assigned `127.77.x.x`
+  listener instead of entering the retired shared-route listener loop.
+
+## 0.1.82
+
+- Keep each page Connector running while it has any unexpired guest grant,
+  including a guest awaiting first-login email verification.
+
 ## 0.1.81
 
 - Allow the root supervisor to atomically persist the page-capability registry
