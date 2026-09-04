@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.90
+
+- Integrate the transparent Guest Access mark and wordmark directly into the
+  administrator and guest page layouts instead of displaying a rectangular
+  logo export.
+- Move the smaller **Powered by LayerV** attribution to the bottom of both
+  pages and remove duplicate Guest Access labeling from the administrator
+  header.
+- Use the `mdi:shield-account` menu icon and shorten the App title to
+  **Guest Access** so Home Assistant can keep it on one line.
+- Enlarge the App-page logo.
+
 ## 0.1.89
 
 - Rename the customer-facing product to **Guest Access for Home Assistant**
