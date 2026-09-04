@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.81
+
+- Allow the root supervisor to atomically persist the page-capability registry
+  under the enforced Home Assistant AppArmor profile.
+
 ## 0.1.80
 
 - Fix startup on Home Assistant by publishing the AppArmor permissions required
