@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.91
+
+- Add **For Home Assistant** and **Share access. Not your system.** beneath the
+  integrated Guest Access header on administrator and guest pages.
+- Use the larger primary Guest Access lockup on the Home Assistant App page.
+- Retain the **Guest Access** sidebar title and `mdi:shield-account` icon. If an
+  existing sidebar shortcut still shows the former title or icon, switch
+  **Show in sidebar** off and back on after updating to refresh its registration.
+
 ## 0.1.90
 
 - Integrate the transparent Guest Access mark and wordmark directly into the
