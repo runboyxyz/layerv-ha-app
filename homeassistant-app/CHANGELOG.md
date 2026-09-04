@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.88
+
+- Build the lightweight page endpoint with Go 1.26.8 security fixes.
+- Cross-compile the endpoint on the native CI runner architecture instead of
+  running the compiler through arm64 emulation.
+
 ## 0.1.87
 
 - Replace each active page's full Python guest gateway with a small compiled
