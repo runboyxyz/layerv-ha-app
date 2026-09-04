@@ -1,8 +1,9 @@
-# LayerV Home Assistant Gateway
+# Guest Access for Home Assistant
 
-[LayerV](https://layerv.ai) creates protected, revocable links to narrowly scoped Home Assistant
-pages. A guest sees only the entities and actions you approve—not your normal
-Home Assistant dashboard, account, or administrative controls.
+Guest Access creates protected, revocable links to narrowly scoped Home
+Assistant pages. A guest sees only the entities and actions you approve—not
+your normal Home Assistant dashboard, account, or administrative controls.
+External access is powered by [LayerV](https://layerv.ai).
 
 The App runs the gateway and LayerV qURL Connector together. Home Assistant
 provides local API access automatically, so you do not need to create a
@@ -103,7 +104,7 @@ page and guest-link counts. It never displays credentials or access URLs.
 ## Installation
 
 1. Add this repository to the Home Assistant App Store.
-2. Install **LayerV Home Assistant Gateway**.
+2. Install **Guest Access for Home Assistant**.
 3. Optionally choose a stable connector ID and entity include/exclude policies.
 4. Start the App and open its Web UI.
 5. On **Connect to LayerV**, enter a dedicated API key for this installation.

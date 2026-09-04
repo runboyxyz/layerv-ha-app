@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.89
+
+- Rename the customer-facing product to **Guest Access for Home Assistant**
+  while retaining LayerV for the underlying connection and qURL terminology.
+- Add the new Guest Access app icon, store logo, administrative lockup, and
+  guest-page branding with the original LayerV wordmark as a small attribution.
+- Use **Guest Access** for the Home Assistant sidebar, email defaults,
+  invitations, alerts, and other user-facing labels.
+- Allow the page-bound guest endpoint to serve the new branding assets.
+
 ## 0.1.88
 
 - Build the lightweight page endpoint with Go 1.26.8 security fixes.

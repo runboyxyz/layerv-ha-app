@@ -1,7 +1,7 @@
-name: LayerV Home Assistant Gateway
-version: "0.1.88"
+name: Guest Access for Home Assistant
+version: "0.1.89"
 slug: layerv_ha_gateway
-description: Share selected Home Assistant controls through revocable, expiring LayerV qURLs
+description: Share selected Home Assistant controls through secure, revocable, expiring guest links
 url: https://layerv.ai
 image: ghcr.io/runboyxyz/layerv-ha-app
 arch:
@@ -13,8 +13,8 @@ init: false
 apparmor: true
 ingress: true
 ingress_port: 8099
-panel_icon: mdi:layers-triple
-panel_title: LayerV Gateway
+panel_icon: mdi:shield-account
+panel_title: Guest Access
 homeassistant_api: true
 hassio_role: default
 options:

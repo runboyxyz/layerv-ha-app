@@ -1,22 +1,22 @@
-# LayerV Home Assistant Gateway
+# Guest Access for Home Assistant
 
-[LayerV](https://layerv.ai) lets you share selected Home Assistant controls
-without port forwarding, VPN accounts, or full Home Assistant user access.
+Guest Access lets you share selected Home Assistant controls without port
+forwarding, VPN accounts, or full Home Assistant user access.
 
 Create a purpose-limited page, select exactly which entities and actions it may
 use, then issue an expiring LayerV qURL to each guest. Every guest link can be
 revoked independently.
 
-The App runs the LayerV gateway and qURL Connector together. Home Assistant
-supplies local API access automatically, while LayerV provides the protected
-external route. No inbound router port or long-lived Home Assistant token is
-required.
+The App runs the Guest Access gateway and LayerV qURL Connector together. Home
+Assistant supplies local API access automatically, while LayerV provides the
+protected external route. No inbound router port or long-lived Home Assistant
+token is required.
 
 First-run setup happens inside authenticated Home Assistant Ingress. The
 LayerV credential is written directly to an owner-only secret file instead of
 Home Assistant App options.
 
-Learn more at [LayerV.ai](https://layerv.ai).
+External access is powered by [LayerV](https://layerv.ai).
 
 ## Security
 
