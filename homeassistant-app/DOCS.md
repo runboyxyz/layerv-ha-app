@@ -170,8 +170,11 @@ The reviewer-facing package is
 - Guest access is separate from App administration.
 - Home Assistant Ingress is accepted only from the Supervisor Ingress proxy;
   the gateway itself listens only inside the App container.
-- The public guest and Ingress admin gateways run as different Linux users.
-  The public process has no admin token, Supervisor token, LayerV API key,
+- Every active guest page endpoint and the Ingress admin gateway run as
+  different Linux users. Each endpoint receives a capability and read-only
+  page copy only while its page has an unexpired guest grant. Inactive pages
+  receive neither a guest process nor a page capability. The public process
+  has no admin token, Supervisor token, LayerV API key,
   LayerV lifecycle credential, discovery credential, or policy-write
   credential.
 - Home Assistant actions and LayerV lifecycle operations pass through narrow

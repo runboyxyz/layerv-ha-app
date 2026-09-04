@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.86
+
+- Start isolated guest endpoint processes only for pages with an unexpired
+  guest grant, and remove their page capability and runtime copy when idle.
+- Preserve one-process/one-UID isolation for every externally reachable page
+  while avoiding roughly one full Python process per unused page.
+
 ## 0.1.85
 
 - Fix the mobile-recipient layout in **Configure email & alerts**.
