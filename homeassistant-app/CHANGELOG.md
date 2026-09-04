@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.92
+
+- Keep the expanded brand treatment on the administrator Gateway while
+  simplifying individual guest-page headers to only the mark and **Guest
+  Access**.
+- Reduce the guest-page mark to match the height of the Guest Access wordmark
+  and reclaim vertical space for controls.
+
 ## 0.1.91
 
 - Add **For Home Assistant** and **Share access. Not your system.** beneath the
