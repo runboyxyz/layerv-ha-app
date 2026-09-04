@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.80
+
+- Fix startup on Home Assistant by publishing the AppArmor permissions required
+  for the page-bound guest endpoint and Home Assistant broker runtime stores.
+
 ## 0.1.79
 
 - Add per-guest activity alerts through registered Home Assistant Companion
