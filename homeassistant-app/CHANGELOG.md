@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.84
+
+- Add a global mobile alert recipient allowlist under **Configure email &
+  alerts**, so guest setup shows only administrator-approved destinations.
+- Discover both `notify.mobile_app_*` actions and modern mobile notify entities;
+  enforce the global allowlist again inside the trusted delivery broker.
+
 ## 0.1.83
 
 - Fix page-bound guest endpoints so they bind their assigned `127.77.x.x`

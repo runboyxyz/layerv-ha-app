@@ -56,6 +56,15 @@ feature rather than proof of physical presence.
 
 ## Guest activity
 
+Configure an administrator alert email and SMTP delivery, or register a device
+with the Home Assistant Companion App. Gateway Health shows the available
+destinations. In **Configure email & alerts**, select which registered mobile
+targets may be used for guest alerts. When creating a guest, enable **Alert me
+about guest activity**, choose from the administrator-approved email/mobile
+destinations, and select first successful login, every successful entity
+action, and/or failed or blocked actions. The public guest cannot select or
+change alert recipients.
+
 Open a page's **Guests** section and select **View activity** beside a guest to
 review actions made with that individual access grant. The history shows the
 time, entity, approved action, safe action parameters, and whether Home
