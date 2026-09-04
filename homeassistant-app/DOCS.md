@@ -35,7 +35,7 @@ mailbox, not a person's legal identity or a unique physical device.
 
 SMTP requires certificate-validated STARTTLS or implicit TLS. The password is
 stored in owner-only App data, never returned by the API, and is not available
-to the public guest process. See
+to any page endpoint process. See
 [`docs/EMAIL_VERIFICATION.md`](../docs/EMAIL_VERIFICATION.md) for provider,
 challenge, session, retry, and cleanup details.
 
@@ -61,9 +61,9 @@ with the Home Assistant Companion App. Gateway Health shows the available
 destinations. In **Configure email & alerts**, select which registered mobile
 targets may be used for guest alerts. When creating a guest, enable **Alert me
 about guest activity**, choose from the administrator-approved email/mobile
-destinations, and select first successful login, every successful entity
-action, and/or failed or blocked actions. The public guest cannot select or
-change alert recipients.
+destinations, and select first
+successful login, every successful entity action, and/or failed or blocked
+actions. The public guest cannot select or change alert recipients.
 
 Open a page's **Guests** section and select **View activity** beside a guest to
 review actions made with that individual access grant. The history shows the
@@ -170,11 +170,13 @@ The reviewer-facing package is
 - Guest access is separate from App administration.
 - Home Assistant Ingress is accepted only from the Supervisor Ingress proxy;
   the gateway itself listens only inside the App container.
-- Every active guest page endpoint and the Ingress admin gateway run as
-  different Linux users. Each endpoint receives a capability and read-only
-  page copy only while its page has an unexpired guest grant. Inactive pages
-  receive neither a guest process nor a page capability. The public process
-  has no admin token, Supervisor token, LayerV API key,
+- Every guest page endpoint, the Ingress admin gateway, and the Home Assistant
+  broker run under distinct Linux identities. Each lightweight compiled guest
+  endpoint receives only a capability valid for its page; page data and alert
+  recipients remain in the trusted gateway.
+  An endpoint exists only while its page has an unexpired guest grant; inactive
+  pages receive neither a guest process nor a page capability.
+  The public process has no admin token, Supervisor token, LayerV API key,
   LayerV lifecycle credential, discovery credential, or policy-write
   credential.
 - Home Assistant actions and LayerV lifecycle operations pass through narrow
@@ -185,8 +187,10 @@ The reviewer-facing package is
 - Guest access tokens are shown once and persisted only as SHA-256 hashes.
 - Page definitions, token hashes, qURL revocation identifiers, connector
   identity, and required secrets persist under `/data`.
-- Guest activity is stored in a group-restricted SQLite database under
-  `/data/guest-runtime`, shared only by the guest and admin process users.
+- Guest activity is stored in an admin-only SQLite database under
+  `/data/guest-runtime`. Page endpoints submit constrained, page-authenticated
+  activity events through the trusted internal broker and cannot read the
+  database.
   Protect Home Assistant backups accordingly. Revoked-guest records are
   automatically purged after 30 days, and each guest is limited to the 1,000
   most recent actions.

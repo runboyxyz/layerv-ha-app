@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.87
+
+- Replace each active page's full Python guest gateway with a small compiled
+  page-bound endpoint while retaining a separate process, Linux identity,
+  listener, and capability for every externally reachable page.
+- Revalidate the endpoint capability against its assigned page inside the
+  trusted gateway on every request, and allow the endpoint to forward only
+  guest access routes and required guest assets.
+- Keep alert recipients, page policy, guest records, and Home Assistant
+  authority exclusively in trusted processes; remove legacy per-page data
+  copies during upgrade.
+- Reduce measured idle endpoint memory to about 4.3 MB per active page on the
+  development host.
+
 ## 0.1.86
 
 - Start isolated guest endpoint processes only for pages with an unexpired
