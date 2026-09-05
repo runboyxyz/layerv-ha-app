@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.96
+
+- Give the Home Assistant App details page a padded black logo banner that
+  remains consistent across light and dark themes.
+- Use a transparent monochrome gray mark in the Apps listing to match Home
+  Assistant's navigation icon treatment on light backgrounds.
+
 ## 0.1.95
 
 - Fix guest and preview pages remaining on the loading screen after adding
