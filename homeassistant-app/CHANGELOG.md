@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.94
+
+- Add gateway-enforced, per-camera still-image refresh intervals, including
+  manual-only refresh, without storing images or exposing video or audio.
+
 ## 0.1.93
 
 - Replace the multi-line Home Assistant App-page artwork with a wide,

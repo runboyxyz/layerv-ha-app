@@ -3,6 +3,10 @@
 Guest Access lets you share selected Home Assistant controls without port
 forwarding, VPN accounts, or full Home Assistant user access.
 
+Read-only camera stills support a gateway-enforced refresh interval configured
+per camera, including manual-only refresh. Images are not stored, and live
+video and audio are not exposed.
+
 Create a purpose-limited page, select exactly which entities and actions it may
 use, then issue an expiring LayerV qURL to each guest. Every guest link can be
 revoked independently.

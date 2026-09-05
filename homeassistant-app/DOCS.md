@@ -143,11 +143,16 @@ default.
 Optional comma-separated entity IDs to hide, for example
 `lock.front_door,camera.driveway`. Exclusions take priority over inclusions.
 
-Camera entities can be assigned as read-only resources. Guest pages fetch a
-current still image on demand and refresh it at most every 30 seconds. Images
-are proxied through the page authorization boundary with `no-store` caching;
-the gateway does not save them to its data directory. Live video and audio are
-not exposed.
+Camera entities can be assigned as read-only resources. Each camera has its own
+**Still-image refresh** choice (15 seconds, 30 seconds, 1 minute, 2 minutes,
+5 minutes, or manual only) in the resource editor; this option is not shown for
+other entity types. Existing cameras and new cameras default to 30 seconds.
+Manual-only cameras load one initial still and provide a **Refresh image**
+button, which is also available for automatically refreshed cameras. The
+gateway enforces the saved interval independently for each camera and guest or
+preview session. Images are proxied through the page authorization boundary
+with `no-store` caching and are never saved to the App data directory. Only
+still images are exposed; live video and audio are not available.
 
 ### `qurl_max_lifetime_days`
 
