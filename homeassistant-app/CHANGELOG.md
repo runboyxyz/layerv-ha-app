@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.95
+
+- Fix guest and preview pages remaining on the loading screen after adding
+  per-camera refresh scheduling.
+
 ## 0.1.94
 
 - Add gateway-enforced, per-camera still-image refresh intervals, including
