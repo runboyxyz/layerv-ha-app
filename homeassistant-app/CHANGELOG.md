@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.97
+
+- Replace the App details-page banner with a transparent, high-contrast Guest
+  Access lockup outlined for legibility on both light and dark themes.
+
 ## 0.1.96
 
 - Give the Home Assistant App details page a padded black logo banner that
