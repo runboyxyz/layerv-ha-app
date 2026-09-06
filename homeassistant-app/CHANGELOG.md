@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.98
+
+- Enlarge the outlined App-page lockup and make the interior of its mark
+  transparent while preserving the white guest figure.
+
 ## 0.1.97
 
 - Replace the App details-page banner with a transparent, high-contrast Guest

@@ -1,5 +1,5 @@
 name: Guest Access
-version: "0.1.97"
+version: "0.1.98"
 slug: layerv_ha_gateway
 description: Share selected Home Assistant controls through secure, revocable, expiring guest links
 url: https://layerv.ai
