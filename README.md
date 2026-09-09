@@ -1,7 +1,7 @@
-# Guest Access for Home Assistant
+# Access Pages for Home Assistant
 
 This public repository contains only the Home Assistant App Store metadata for
-**Guest Access for Home Assistant**. The App installs the public, versioned
+**Access Pages for Home Assistant**. The App installs the public, versioned
 image from `ghcr.io/runboyxyz/layerv-ha-app`. External access is powered by
 [LayerV](https://layerv.ai).
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.99
+
+- Rename the customer-facing product to **Access Pages for Home Assistant**
+  while preserving the App slug, container image, and LayerV-specific technical
+  identifiers.
+- Replace the active Home Assistant, administrator, and guest-page artwork with
+  the transparent Access Pages A-doorway logo package.
+
 ## 0.1.98
 
 - Enlarge the outlined App-page lockup and make the interior of its mark

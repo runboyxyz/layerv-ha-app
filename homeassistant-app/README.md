@@ -1,6 +1,6 @@
-# Guest Access for Home Assistant
+# Access Pages for Home Assistant
 
-Guest Access lets you share selected Home Assistant controls without port
+Access Pages lets you share selected Home Assistant controls without port
 forwarding, VPN accounts, or full Home Assistant user access.
 
 Read-only camera stills support a gateway-enforced refresh interval configured
@@ -11,7 +11,7 @@ Create a purpose-limited page, select exactly which entities and actions it may
 use, then issue an expiring LayerV qURL to each guest. Every guest link can be
 revoked independently.
 
-The App runs the Guest Access gateway and LayerV qURL Connector together. Home
+The App runs the Access Pages gateway and LayerV qURL Connector together. Home
 Assistant supplies local API access automatically, while LayerV provides the
 protected external route. No inbound router port or long-lived Home Assistant
 token is required.

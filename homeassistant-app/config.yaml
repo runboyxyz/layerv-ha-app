@@ -1,5 +1,5 @@
-name: Guest Access
-version: "0.1.98"
+name: Access Pages
+version: "0.1.99"
 slug: layerv_ha_gateway
 description: Share selected Home Assistant controls through secure, revocable, expiring guest links
 url: https://layerv.ai
@@ -14,7 +14,7 @@ apparmor: true
 ingress: true
 ingress_port: 8099
 panel_icon: mdi:shield-account
-panel_title: Guest Access
+panel_title: Access Pages
 homeassistant_api: true
 hassio_role: default
 options:
