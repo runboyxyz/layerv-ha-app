@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.100
+
+- Match the Access Pages mark and wordmark heights across administrator and
+  guest-page layouts, including narrow mobile screens.
+- Replace remaining customer-facing Guest Access labels with Access Pages in
+  link sharing, invitation emails, verification guidance, and expired-page
+  errors.
+
 ## 0.1.99
 
 - Rename the customer-facing product to **Access Pages for Home Assistant**
