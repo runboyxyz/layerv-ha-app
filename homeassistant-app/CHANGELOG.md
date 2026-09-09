@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.101
+
+- Restore the original Access Pages logo proportions in the administrator and
+  guest headers: the A-doorway mark is approximately 1.78 times the wordmark
+  height while the overall lockup width remains stable.
+
 ## 0.1.100
 
 - Match the Access Pages mark and wordmark heights across administrator and
