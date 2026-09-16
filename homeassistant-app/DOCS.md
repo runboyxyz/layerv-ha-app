@@ -143,11 +143,12 @@ there is only one qURL on each guest resource. This also prevents new requests
 through its previously consumed invitation. The Gateway immediately invalidates
 the guest grant/session, persists unfinished upstream cleanup, and retries
 pending enforcement. An upstream outage does not leave the local grant active.
-The revocation order is: save local revocation, delete the guest's qURL, then
-delete its resource. Resource deletion proceeds even if the qURL deletion is
-pending, and unfinished cleanup survives a restart. Deleting the qURL first is
-an additional barrier to opening the invitation; it is not a guarantee of faster
-termination of established LayerV connections.
+The revocation order is: save local revocation, then delete the guest resource
+through the Connector. Resource deletion covers its single qURL, so the Gateway
+does not send a separate qURL DELETE in this mode. Unfinished resource and native
+cleanup survives a restart and is retried. This removes a redundant upstream
+operation; it does not guarantee faster termination of established connections
+or establish the cause of the reported cross-host interruption.
 
 `page` shares one LayerV resource between the page's modern guest invitations.
 Each invitation still has its own qURL, bootstrap secret, and Gateway session.

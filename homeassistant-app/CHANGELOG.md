@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.110
+
+- In per-guest isolation, revoke the Gateway grant locally and delete only the
+  guest resource upstream. Resource deletion covers its single qURL; remove
+  the redundant individual qURL DELETE, including on durable cleanup retries.
+- Preserve per-page isolation: revoke only the guest's qURL, keeping the shared
+  resource and other guests. Existing invitations retain their recorded mode.
+- This simplifies revocation for testing the reported cross-host lockout; its
+  effect on that upstream interruption has not yet been verified.
+
 ## 0.1.109
 
 - Bound guest requests, including response bodies, to ten seconds. Clear stale
