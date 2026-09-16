@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.109
+
+- Bound guest requests, including response bodies, to ten seconds. Clear stale
+  controls and camera frames on connection failure and recover through status
+  polling. Never automatically repeat a timed-out Home Assistant command.
+- Preserve automatic removal of controls when polling confirms revoked or
+  expired access; prevent a pending response from restoring revoked controls.
+- Document browser behavior separately from LayerV revocation propagation.
+  The reported pause affecting separate HA installations remains under
+  investigation; this release does not claim to resolve its cause.
+
 ## 0.1.108
 
 - Persist exponential backoff for failed abandoned-allocation recovery instead

@@ -170,6 +170,15 @@ cleanup at grant expiry; guest mode deletes the resource, while page mode
 deletes the qURL. Per-page mode therefore has weaker upstream connection revocation;
 the Gateway still denies the revoked guest's subsequent protected operations.
 
+An open guest page checks status every three seconds while visible. If the
+Gateway returns an expired or revoked access response, the browser removes
+its controls without requiring a button press. A request that stalls, including
+its response body, times out after ten seconds; the browser clears cached
+controls and camera frames, shows a connection warning, and retries status.
+A connection warning alone does not establish that access was revoked. Controls
+return when status becomes available again. Commands are never automatically
+repeated after a timeout: check the refreshed state before trying again.
+
 Both modes use one Connector daemon with a session per resource. Per-page mode
 uses fewer LayerV resources, but same-NAT browsers can share upstream admission
 to admitted paths. Gateway sessions remain mandatory in both modes. Separate
