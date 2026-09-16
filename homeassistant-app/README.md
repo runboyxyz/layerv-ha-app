@@ -16,6 +16,11 @@ Assistant supplies local API access automatically, while LayerV provides the
 protected external route. No inbound router port or long-lived Home Assistant
 token is required.
 
+New links use independent Gateway sessions. `resource_isolation: guest`
+(default) gives each guest one resource and one qURL; `page` shares a resource
+and has weaker LayerV enforcement for established connections. See `DOCS.md`
+for configuration, three-day grants, admission renewal, and legacy-link migration.
+
 First-run setup happens inside authenticated Home Assistant Ingress. The
 LayerV credential is written directly to an owner-only secret file instead of
 Home Assistant App options.

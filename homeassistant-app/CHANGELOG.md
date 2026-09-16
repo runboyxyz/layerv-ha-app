@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.102
+
+- Use the pinned LayerV CLI 2.5.4 shared Connector for new invitations, with
+  supported per-resource sessions and serving readiness checks.
+- Default to one resource and one qURL per guest grant. Optional
+  `resource_isolation: page` shares a resource and preserves other guests on
+  individual qURL revocation, with documented limits for existing connections.
+- Deliver a one-time Gateway bootstrap and establish independent, scoped guest
+  sessions. Preserve required email verification and three-day guest grants,
+  with renewable LayerV admission capped at 24 hours per session.
+- Revoke locally before deleting the qURL and, in per-guest mode, its resource.
+  Persist and retry cleanup, expired grants, interrupted allocations, and
+  policy publication across restarts.
+- Preserve existing legacy links and identifiers. Replace legacy invitations
+  to adopt the new flow; review the migration and rollback documentation.
+
 ## 0.1.101
 
 - Restore the original Access Pages logo proportions in the administrator and

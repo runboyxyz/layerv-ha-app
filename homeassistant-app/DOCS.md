@@ -114,6 +114,68 @@ page and guest-link counts. It never displays credentials or access URLs.
 
 ## Configuration reference
 
+### `resource_isolation`
+
+Values: `guest` (default) or `page`.
+
+`guest` allocates one LayerV resource/CRID for each guest grant on a page.
+The mapping is **one guest grant → one resource → one qURL**. Revocation disables
+the Gateway grant and revokes that guest's whole LayerV resource, automatically
+revoking its qURL. Other guests have separate destinations and are preserved.
+The LayerV API contract covers all qURLs on a revoked resource; in this design
+there is only one qURL on each guest resource. This also prevents new requests
+through its previously consumed invitation. The Gateway immediately invalidates
+the guest grant/session, persists unfinished upstream cleanup, and retries
+pending enforcement. An upstream outage does not leave the local grant active.
+The revocation order is: save local revocation, delete the guest's qURL, then
+delete its resource. Resource deletion proceeds even if the qURL deletion is
+pending, and unfinished cleanup survives a restart. Deleting the qURL first is
+an additional barrier to opening the invitation; it is not a guarantee of faster
+termination of established LayerV connections.
+
+`page` shares one LayerV resource between the page's modern guest invitations.
+Each invitation still has its own qURL, bootstrap secret, and Gateway session.
+Guest revocation removes only its qURL at LayerV and its grant at the Gateway;
+revoking the shared resource would remove every guest on that page.
+The broker therefore uses individual qURL revocation for guest removal in this
+mode. Previously issued invitations keep this behavior even if the configuration
+is subsequently changed to `guest`.
+
+Gateway enforcement applies immediately to new protected operations once local
+revocation is saved. An action already dispatched to Home Assistant cannot be
+undone. LayerV enforcement can propagate later: isolated production tests
+observed established HTTP streams and WebSockets closing within approximately
+30 seconds after resource deletion. After individual qURL deletion, established
+connections remained open for at least 60 seconds, although new requests to the
+revoked invitation returned 404. These observations are not a guaranteed LayerV
+deadline. Natural LayerV session expiry also did not terminate established
+connections in the short-lived test. The Gateway explicitly queues upstream
+cleanup at grant expiry; guest mode deletes the resource, while page mode
+deletes the qURL. Per-page mode therefore has weaker upstream connection revocation;
+the Gateway still denies the revoked guest's subsequent protected operations.
+
+Both modes use one Connector daemon with a session per resource. Per-page mode
+uses fewer LayerV resources, but same-NAT browsers can share upstream admission
+to admitted paths. Gateway sessions remain mandatory in both modes. Separate
+resources also do not authenticate individual browsers within the same NAT.
+In production tests, fresh browsers behind the same public IP could reach an
+already admitted guest prefix without their own qURL. They cannot gain Gateway
+authorization without the correct unconsumed bootstrap secret, required guest
+verification, and a session bound to the grant and page. Per-guest mode gives
+guests different resource-host URLs and prevents one resource's admission from
+opening another resource before that resource is admitted. It is a separate
+upstream destination/revocation boundary, not browser identity enforcement.
+
+Apply configuration changes with an App restart. The setting applies to new
+invitations; existing grants retain their recorded resource and revocation mode.
+It does not migrate existing links. A plan with 10 active resources allows at
+most 10 guest resources in `guest` mode, minus resources used by other services.
+In `page` mode, resource usage instead scales with pages that have modern
+invitations. Switching modes does not automatically consolidate or split existing resources.
+
+New invitations use the shared Connector runtime. Existing legacy invitations
+retain their original Connector and identifiers until revoked or expired.
+
 ### `connector_id`
 
 Optional stable name for this Home Assistant installation's LayerV connector.
@@ -180,8 +242,8 @@ The reviewer-facing package is
   broker run under distinct Linux identities. Each lightweight compiled guest
   endpoint receives only a capability valid for its page; page data and alert
   recipients remain in the trusted gateway.
-  An endpoint exists only while its page has an unexpired guest grant; inactive
-  pages receive neither a guest process nor a page capability.
+  The shared Connector flow prepares one loopback endpoint per saved page;
+  legacy-only operation prepares endpoints while guests remain active.
   The public process has no admin token, Supervisor token, LayerV API key,
   LayerV lifecycle credential, discovery credential, or policy-write
   credential.
@@ -190,6 +252,9 @@ The reviewer-facing package is
   supply an arbitrary HA service/entity tuple or raw LayerV resource/qURL ID.
 - Brokers read a sanitized authoritative policy store. Guest grants, token
   hashes, qURL links, and activity history are not published into it.
+  The trusted LayerV broker also has read-only access to saved Gateway grants
+  to confirm invitation creation committed before retaining an allocation.
+  Guest endpoints have no access to that store or the native device state.
 - Guest access tokens are shown once and persisted only as SHA-256 hashes.
 - Page definitions, token hashes, qURL revocation identifiers, connector
   identity, and required secrets persist under `/data`.
@@ -238,11 +303,18 @@ include API keys, tokens, qURLs, access links, request bodies, or Connector
 private state. Restore the LayerV App-only backup or reinstall the preceding
 version without deleting App data while the missing permission is investigated.
 
-On first start, the App uses the bundled LayerV Connector to find or create its
-tunnel resource and write the LayerV-issued route identifiers under `/data`.
-The connector then registers its identity and stores durable agent state there.
-Normal restarts reuse both the route and agent state instead of creating another
-connector.
+The shared runtime enrolls a device on first publication and stores native
+state privately in `/data/layerv-broker`. New invitations allocate resources
+according to `resource_isolation`; normal restarts reuse their identities and
+routes. The AppArmor profile permits the pinned `qurl` executable and the
+broker-owned Unix IPC socket in addition to the retained legacy Connector.
+
+Before upgrading from 0.1.101, take an App-only backup. Existing legacy links
+keep their original identifiers and behavior; revoke and replace them to adopt
+the new session flow. A rollback to 0.1.101 requires restoring that pre-upgrade
+backup and the preceding image, rather than interpreting modern invitation
+records with the older application. Revoke new invitations before rolling back;
+restoring a backup cannot restore LayerV resources already deleted upstream.
 
 The App passes `/data/connector-state` directly to the connector as its agent
 state directory. Do not replace it with a symlink or share it with another
@@ -308,3 +380,32 @@ backups, Connector state, and App logs may contain sensitive operational data.
 The gateway source code is licensed under the MIT License. LayerV names,
 wordmarks, logos, and other brand assets are not included in that license.
 See `../BRAND_ASSETS.md` in the repository.
+
+### Guest lifetime and admission renewal
+
+The qURL lifetime and the LayerV admission duration are separate clocks. The
+Gateway can issue a three-day grant on a plan permitting three-day qURLs. Each
+LayerV admission is limited to at most 24 hours, or the requested grant lifetime
+when shorter. Production accepted a three-day qURL with 24-hour admission and
+rejected a 25-hour admission duration.
+
+Renewable invitations explicitly use `one_time_use: false`. The guest retains
+one qURL and reopens it in the original browser when upstream admission expires.
+The Gateway bootstrap is consumed only once. Its Secure, HttpOnly cookie lasts
+until the grant deadline; a renewed admission in that bound browser redirects
+to the clean guest prefix without exchanging the bootstrap again. A different
+browser cannot exchange an already-consumed bootstrap. Clearing the cookie
+requires the owner to revoke and issue a new invitation. Required email-code
+verification remains a separate authorization step with a maximum 12-hour
+session, so a valid guest cookie does not bypass re-verification.
+
+Single-use invitations remain available for grants of at most 24 hours. They
+cannot renew admission with their consumed qURL. Revocation and the current grant
+expiry are checked on every protected Gateway operation in either flow.
+
+The guest identity cookie uses `SameSite=Lax` so it accompanies the safe
+navigation from `qurl.link` back to the resource host when renewing admission.
+It remains Secure, HttpOnly and scoped to the exact guest prefix. Mutating guest
+requests require `X-Guest-Request: 1`, which cross-site forms cannot supply; guest
+CORS access is not granted. Email-verification cookies retain their separate
+policy and expiry.
