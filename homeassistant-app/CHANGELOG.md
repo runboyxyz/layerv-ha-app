@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.106
+
+- Allow the native Connector to open the filesystem root directory read-only
+  for its secure state-directory walk. Fix the reported login failure:
+  `open pinned walk anchor /: open /: permission denied`.
+- Keep file access under the existing explicit allowlist. The new `/ r,` rule
+  permits the root directory itself; it does not grant access to its files
+  or descendants. AppArmor remains enforced.
+
 ## 0.1.105
 
 - Include a bounded, redacted Connector login error for otherwise unclassified

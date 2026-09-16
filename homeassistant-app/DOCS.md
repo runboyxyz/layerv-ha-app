@@ -471,3 +471,10 @@ For an unclassified Connector login failure (exit 1), the minting error also
 includes the Connector error line with credentials, URLs, email addresses, and
 long opaque values redacted. This diagnostic identifies enrollment failures
 without requiring access to Docker. It does not change enrollment behavior.
+
+The AppArmor profile allows read-only access to the root directory itself
+(`/ r,`) because the native Connector securely opens each ancestor of its
+state directory with `O_DIRECTORY` and `O_NOFOLLOW`. Files and descendants
+still require their existing explicit rules. If upgrading from 0.1.105 with
+`open pinned walk anchor /: open /: permission denied`, update to 0.1.106 or
+later so Home Assistant reloads the corrected enforced profile.
