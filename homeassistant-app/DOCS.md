@@ -491,3 +491,17 @@ retrying. Active qURL/resource plan quotas are separate and an upstream
 does not necessarily reset a request-rate window. Minting is never retried
 automatically. If the broker response is lost, the existing reconciliation
 process still handles resources/invitations that have no committed local grant.
+
+Connector exit 9 also means rate limited; it is separate from plan-quota
+denials. The native CLI does not consistently expose the platform's exact
+retry interval, so the App recommends waiting at least 60 seconds locally.
+That recommendation is not a promise that the platform window resets then.
+Keys on the same LayerV account share its account API request limits; replacing
+a key does not reset them.
+
+Failed recovery of abandoned resource allocations uses a persistent retry
+schedule. Rate-limited recovery starts with at least 60 seconds of backoff,
+grows exponentially up to an hour, and honors a longer available retry delay.
+It pauses the entire orphan-publication scan, including other pending
+allocations, until that delay passes. Restarting the broker preserves the
+schedule. Native ownership and existing revocation queues are retained.

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.108
+
+- Persist exponential backoff for failed abandoned-allocation recovery instead
+  of retrying native publication at every five-second reconciliation tick.
+- A rate-limited recovery pauses the whole orphan-publication scan, including
+  other allocations, across broker restarts. Cleanup ownership remains intact.
+- Correct Connector exit 9 to a rate-limit rejection, separate from plan quotas,
+  with an HTTP 429 upstream status and a conservative local 60-second minimum
+  retry recommendation. Retain 0.1.107 invitation deadline fixes.
+
 ## 0.1.107
 
 - Give invitation creation up to six minutes at the private broker and six
