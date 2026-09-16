@@ -180,6 +180,29 @@ A connection warning alone does not establish that access was revoked. Controls
 return when status becomes available again. Commands are never automatically
 repeated after a timeout: check the refreshed state before trying again.
 
+Updates use AJAX on the guest's existing authorized origin and grant prefix,
+with the existing HttpOnly Gateway cookie. They do not reopen the invitation,
+exchange the bootstrap again, or request a new qURL admission. Status requests
+are coalesced so visibility changes cannot create overlapping polls. Hidden
+or offline tabs pause automatic status and camera requests. Failed status
+connections retry after six, twelve, twenty-four, forty-eight, then sixty
+seconds; successful status resets the interval to three seconds.
+
+Background status, action, verification and camera requests reject HTTP
+redirects. An upstream redirect therefore becomes a connection warning rather
+than silently following a qURL admission flow. Reloading the cleaned guest URL
+reuses the Gateway session, provided the upstream admission remains usable.
+Reopening the original qURL runs LayerV's admission flow; expired or removed
+upstream admission may still require the guest to reopen that invitation.
+The Gateway cookie cannot bypass LayerV's network enforcement.
+
+AJAX retains the existing bounded HTTP request model: no WebSocket/SSE worker,
+long-lived stream, shared guest credential or additional server session is
+introduced. Every protected request still checks the live grant, page binding,
+expiry, verification and allowed entity/action. Local revocation immediately
+denies subsequent protected operations; visible controls update when the browser
+can obtain the denial. A network outage is not proof of revocation.
+
 Both modes use one Connector daemon with a session per resource. Per-page mode
 uses fewer LayerV resources, but same-NAT browsers can share upstream admission
 to admitted paths. Gateway sessions remain mandatory in both modes. Separate

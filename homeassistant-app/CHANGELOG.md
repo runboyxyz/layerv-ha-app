@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.111
+
+- Keep AJAX updates on the existing guest session. Background status, camera,
+  verification and action requests explicitly use same-origin credentials and
+  reject redirects, preventing silent navigation into upstream admission flows.
+- Coalesce status requests, pause updates while hidden/offline, and back off
+  reconnect polling from six seconds up to sixty seconds after failures.
+  Camera requests now share the ten-second deadline and redirect protection.
+- Preserve authorization on every request, resource isolation, entity/action
+  restrictions, immediate local revocation and resource-only guest retirement.
+- Test session reuse, concurrent guests, revocation, redirect rejection and
+  browser reconnects. The production lockout's upstream trigger remains unproven.
+
 ## 0.1.110
 
 - In per-guest isolation, revoke the Gateway grant locally and delete only the
