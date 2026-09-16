@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.113
+
+- Revoke Gateway authorization immediately and durably defer native LayerV
+  cleanup for a 15-second minimum status-update window. Preserve guest/resource
+  isolation and retry upstream failures without restoring local access. The
+  window allows notification but does not require browser acknowledgement.
+- Check stale guest status immediately when returning to a page or reconnecting,
+  while retaining coalesced requests and background admission redirect protection.
+- Correct shared Connector dashboard labeling: modern page endpoints no longer
+  appear as dormant legacy Connectors. This is not a native route health probe.
+- Reduce the inline email logo to 24 pixels. Choose invitation email delivery
+  first, then optional verification; turning email off clears verification.
+
 ## 0.1.112
 
 - Restore first-login activity alerts for scoped guest sessions and correct

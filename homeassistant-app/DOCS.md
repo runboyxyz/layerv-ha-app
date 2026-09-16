@@ -73,7 +73,10 @@ feature rather than proof of physical presence.
 
 ## Guest activity
 
-With SMTP configured, **Email guest invitation** sends the newly created link
+With SMTP configured, first select **Email guest invitation**, enter the guest's email,
+and then choose whether to **Require guest verification**. Turning off invitation
+email clears verification for the new invitation. Email delivery alone does not
+require verification. **Email guest invitation** sends the newly created link
 to the supplied guest email even when **Require guest verification** is off.
 Verification-enabled guests automatically receive the invitation and use the
 same address for codes. Sending an invitation alone does not require or prove
@@ -177,7 +180,13 @@ mode. Previously issued invitations keep this behavior even if the configuration
 is subsequently changed to `guest`.
 
 Gateway enforcement applies immediately to new protected operations once local
-revocation is saved. An action already dispatched to Home Assistant cannot be
+revocation is saved. The native broker durably queues upstream revocation with
+a 15-second minimum window so a healthy visible browser can receive the revoked
+status on its next three-second poll. This is a bounded notification opportunity,
+not a browser acknowledgement: hidden, offline, or already blocked browsers may
+not receive it. LayerV cleanup proceeds after the window without waiting for a
+guest, and retries durably after failures. Local controls and actions remain
+denied throughout. An action already dispatched to Home Assistant cannot be
 undone. LayerV enforcement can propagate later: isolated production tests
 observed established HTTP streams and WebSockets closing within approximately
 30 seconds after resource deletion. After individual qURL deletion, established
