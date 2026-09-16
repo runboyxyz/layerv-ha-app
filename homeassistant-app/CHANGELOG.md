@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.105
+
+- Include a bounded, redacted Connector login error for otherwise unclassified
+  exit-1 enrollment failures. Preserve the failure stage and exit code.
+- Do not include successful identity output, verbose diagnostics, account keys,
+  invitation URLs, email addresses, or long opaque credential values.
+- This diagnostic update does not claim to resolve the reported installation
+  failure; the underlying Connector explanation is required to identify it.
+
 ## 0.1.104
 
 - Restore native One-time use for current Connector invitations after production

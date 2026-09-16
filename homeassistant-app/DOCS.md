@@ -466,3 +466,8 @@ response detail is exposed. A failure reports no successful new guest link;
 existing guests remain unchanged. Check permissions, quota, or runtime readiness
 according to the reported error; do not reset existing guest credentials as a
 generic troubleshooting step.
+
+For an unclassified Connector login failure (exit 1), the minting error also
+includes the Connector error line with credentials, URLs, email addresses, and
+long opaque values redacted. This diagnostic identifies enrollment failures
+without requiring access to Docker. It does not change enrollment behavior.
