@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.107
+
+- Give invitation creation up to six minutes at the private broker and six
+  minutes thirty seconds at ingress, allowing cold Connector enrollment and
+  publication to finish and return their result. Other request deadlines stay
+  unchanged. Show initial-setup wait guidance in the UI.
+- Preserve LayerV creation-rate-limit Retry-After instructions and distinguish
+  HTTP 429 from a typed HTTP 403 plan-quota rejection. Do not retry minting
+  automatically or return upstream private error details.
+- Handle a disconnected broker caller without a BrokenPipe traceback; log
+  only the safe error/status and retain existing durable reconciliation.
+
 ## 0.1.106
 
 - Allow the native Connector to open the filesystem root directory read-only

@@ -478,3 +478,16 @@ state directory with `O_DIRECTORY` and `O_NOFOLLOW`. Files and descendants
 still require their existing explicit rules. If upgrading from 0.1.105 with
 `open pinned walk anchor /: open /: permission denied`, update to 0.1.106 or
 later so Home Assistant reloads the corrected enforced profile.
+
+First invitation creation may include native enrollment and initial resource
+publication. The Gateway waits up to 360 seconds for that broker operation,
+and ingress allows 390 seconds for its result. Ordinary requests retain their
+shorter deadlines. Leave the Create action running during initial setup.
+
+LayerV HTTP 429 indicates its documented account request-rate limit. The App
+shows the upstream `Retry-After` wait when supplied; wait before manually
+retrying. Active qURL/resource plan quotas are separate and an upstream
+`403 quota_exceeded` is reported as a plan-quota rejection. Deleting invitations
+does not necessarily reset a request-rate window. Minting is never retried
+automatically. If the broker response is lost, the existing reconciliation
+process still handles resources/invitations that have no committed local grant.
