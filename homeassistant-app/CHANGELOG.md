@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.112
+
+- Restore first-login activity alerts for scoped guest sessions and correct
+  page attribution for action alerts. Successful authorized login is recorded
+  once; previews, denied requests and repeated status polls do not trigger it.
+- Add Email guest invitation independently of Require guest verification when
+  SMTP is configured. Verify email/SMTP before allocation and report delivery
+  failure while preserving the created link. Delivery-only recipients are not
+  stored for verification.
+- Style invitations with an inline Access Pages logo and button, hide long URLs
+  in HTML, retain plain-text fallback links, and make code instructions conditional
+  on verification. Explain sender and administrator email fields in the UI.
+
 ## 0.1.111
 
 - Keep AJAX updates on the existing guest session. Background status, camera,

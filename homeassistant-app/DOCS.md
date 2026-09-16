@@ -73,6 +73,24 @@ feature rather than proof of physical presence.
 
 ## Guest activity
 
+With SMTP configured, **Email guest invitation** sends the newly created link
+to the supplied guest email even when **Require guest verification** is off.
+Verification-enabled guests automatically receive the invitation and use the
+same address for codes. Sending an invitation alone does not require or prove
+identity verification. Delivery-only recipient addresses are not retained for
+verification. A delivery failure leaves the created link available for sharing;
+check the displayed result rather than creating another link just to retry mail.
+
+Invitation HTML contains an inline Access Pages logo and an Open Guest Controls
+button; plain-text email retains the URL for clients that do not display HTML.
+No remote logo download is required. Verification instructions appear only for
+guests requiring verification.
+
+**Sender email** is the From address used for outgoing invitations, codes and
+alerts; it must be accepted by your SMTP provider. **Administrator alert email**
+is the recipient for guest activity alerts and test messages. They may be the
+same address, or use a dedicated sender with alerts delivered to your own inbox.
+
 Configure an administrator alert email and SMTP delivery, or register a device
 with the Home Assistant Companion App. Gateway Health shows the available
 destinations. In **Configure email & alerts**, select which registered mobile
