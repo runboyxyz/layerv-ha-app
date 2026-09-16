@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.104
+
+- Restore native One-time use for current Connector invitations after production
+  first-admission/replay verification. Keep the 24-hour single-use grant limit.
+- Restore the existing Gateway email-code verification control when SMTP and
+  scoped invitations are available; remove the obsolete target_path warning.
+- Preserve safe broker and Connector failure diagnostics instead of masking
+  every minting failure as a generic broker rejection. Never expose raw stderr.
+- Document Gateway verification versus upstream identity authentication and
+  keep the separate Nova NHP plugin implementation out of this project.
+
 ## 0.1.103
 
 - Keep resource cleanup pending when CLI 2.5.4 confirms remote deletion but

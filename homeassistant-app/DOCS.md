@@ -14,7 +14,9 @@ long-lived Home Assistant token or expose an inbound router port.
 1. Create a reusable access page, such as **Cat Sitter**.
 2. Add Home Assistant entities and approve the permitted actions.
 3. Add a named guest and choose an expiration time.
-4. Send that guest the activation qURL and one-time-displayed access link.
+4. Send that guest the qURL shown by the App; new invitations include their
+   Gateway bootstrap in that single link. Existing legacy invitations retain
+   their original activation/access-link flow.
 5. Revoke that guest—or every guest on the page—whenever needed.
 
 Each guest receives an independent LayerV qURL. Revoking one guest does not
@@ -32,13 +34,27 @@ For higher assurance, configure email under **Gateway health → Configure
 email**, then enable **Require guest verification** when creating a guest. The
 invitation is sent to the saved address, and the guest must enter a six-digit
 code before any state or action API is released. This proves access to the
-mailbox, not a person's legal identity or a unique physical device.
+mailbox, not a person's legal identity or a unique physical device. This check
+runs **at the Gateway after LayerV admission**, before protected state or
+actions. `target_path` scopes the invitation's route; it does not verify identity.
+The checkbox is enabled when the current invitation runtime and SMTP delivery
+are configured. Opening the guest dialog preserves that availability.
+
+Google sign-in is not implemented in this LayerV Gateway. The separate Nova
+Gateway's None/Google/email selector depends on its own NHP Server plugin and
+signed identity handoff; those components have not been migrated here. LayerV's
+current public qURL API has no external ASP configuration or equivalent
+pre-admission identity challenge/continuation contract. Restoring upstream
+verification would require LayerV support for that contract, including binding
+verified identity to the invited guest and withholding AC admission until the
+check succeeds. Gateway email verification remains independently supported.
 
 SMTP requires certificate-validated STARTTLS or implicit TLS. The password is
 stored in owner-only App data, never returned by the API, and is not available
-to any page endpoint process. See
-[`docs/EMAIL_VERIFICATION.md`](../docs/EMAIL_VERIFICATION.md) for provider,
-challenge, session, retry, and cleanup details.
+to any page endpoint process. Codes expire after ten minutes, allow at most five
+incorrect attempts, and may be resent after sixty seconds. Successful
+verification lasts at most twelve hours and never beyond the guest deadline;
+revocation invalidates the associated sessions.
 
 ### Nearby-only controls
 
@@ -428,6 +444,12 @@ verification remains a separate authorization step with a maximum 12-hour
 session, so a valid guest cookie does not bypass re-verification.
 
 Single-use invitations remain available for grants of at most 24 hours. They
+use LayerV's native `one_time_use: true` setting, rather than relying only on
+the Gateway bootstrap. Production testing admitted the first browser, denied
+a fresh browser's second qURL redemption, and preserved the original browser's
+protected Gateway session within its admission lifetime. Same-NAT direct access
+still requires the appropriate Gateway cookie.
+Single-use invitations
 cannot renew admission with their consumed qURL. Revocation and the current grant
 expiry are checked on every protected Gateway operation in either flow.
 
@@ -437,3 +459,10 @@ It remains Secure, HttpOnly and scoped to the exact guest prefix. Mutating guest
 requests require `X-Guest-Request: 1`, which cross-site forms cannot supply; guest
 CORS access is not granted. Email-verification cookies retain their separate
 policy and expiry.
+
+Minting failures preserve safe broker error messages and Connector operation/
+exit-code diagnostics. No raw Connector stderr, credentials, or upstream
+response detail is exposed. A failure reports no successful new guest link;
+existing guests remain unchanged. Check permissions, quota, or runtime readiness
+according to the reported error; do not reset existing guest credentials as a
+generic troubleshooting step.
