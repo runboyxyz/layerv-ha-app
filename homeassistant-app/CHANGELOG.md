@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.103
+
+- Keep resource cleanup pending when CLI 2.5.4 confirms remote deletion but
+  warns that native binding retirement or daemon reload failed. Durable retries
+  now require local convergence as well as the upstream deletion response.
+- Carry forward the 0.1.102 migration's completed production and packaged
+  acceptance checks; document the separate image scan's remaining findings.
+
 ## 0.1.102
 
 - Use the pinned LayerV CLI 2.5.4 shared Connector for new invitations, with
