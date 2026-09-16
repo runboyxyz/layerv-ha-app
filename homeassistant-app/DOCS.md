@@ -168,10 +168,38 @@ upstream destination/revocation boundary, not browser identity enforcement.
 
 Apply configuration changes with an App restart. The setting applies to new
 invitations; existing grants retain their recorded resource and revocation mode.
-It does not migrate existing links. A plan with 10 active resources allows at
-most 10 guest resources in `guest` mode, minus resources used by other services.
-In `page` mode, resource usage instead scales with pages that have modern
-invitations. Switching modes does not automatically consolidate or split existing resources.
+It does not migrate existing links. Creating or saving a page allocates no
+LayerV resource in either mode. A resource is allocated when creating an
+invitation: one per guest in `guest` mode, or the first shared resource for that
+page in `page` mode. Later page-mode invitations reuse that page resource.
+
+Switching from `guest` to `page` preserves existing guest resources. The first
+new page-mode invitation needs an additional shared resource unless a pool
+already exists. Switching from `page` to `guest` preserves existing shared
+invitations; only new invitations receive their own resources. To change an
+existing invitation's isolation, revoke it and create a replacement.
+
+Shared page resources remain allocated for reuse after their last invitation
+is revoked or expires, including after switching to `guest`. They are retired
+when the page is deleted. Individual guest resources are retired on guest
+revocation or expiry. Upstream capacity is released only once cleanup succeeds.
+Switching modes does not automatically consolidate, split, or evict resources.
+
+Resource and qURL limits are separate LayerV limits. Count existing isolated
+guest resources, retained page resources, legacy resources, and resources used
+by other services against the account's resource limit. Each guest invitation
+still needs a qURL in either mode. For example, a 10-resource limit with eight
+existing guest resources leaves room for only two additional page pools;
+creating other empty pages consumes no slots.
+
+LayerV enforces these limits during creation. If allocation or qURL creation
+fails, the Gateway reports an upstream error and does not save or return a new
+guest invitation. Existing guests remain unchanged. An exclusively allocated
+guest resource is retired if its qURL creation fails; failed cleanup is retried
+durably. A shared page resource is retained, and uncertain invitation creation
+is reconciled without deleting other page guests. Free capacity, allow pending
+cleanup to finish, and retry creating the invitation. There is no automatic
+guest eviction or conversion to another isolation mode.
 
 New invitations use the shared Connector runtime. Existing legacy invitations
 retain their original Connector and identifiers until revoked or expired.
