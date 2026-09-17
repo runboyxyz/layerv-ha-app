@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.114
+
+- Restore camera snapshots fetched through bounded AJAX by allowing browser-local
+  blob URLs in the image Content Security Policy. Guest/page/camera authorization,
+  refresh limits, revocation, and script/connect restrictions remain enforced.
+- Verify the regression in Chrome with the actual response policy: the image
+  was blocked before the fix and rendered afterward without CSP violations.
+
 ## 0.1.113
 
 - Revoke Gateway authorization immediately and durably defer native LayerV
